@@ -29,6 +29,9 @@ public:
     // 初始化方法
     virtual bool init();
 
+    // 关卡
+    int level;
+
     // 定义网格大小 12X8
     static const int GRID_WIDTH = 12;
     static const int GRID_HEIGHT = 8;
@@ -52,7 +55,7 @@ public:
 
     // 方法来初始化网格和路径
     void setupGrid();
-    void addPathPoint(int x, int y);
+    void addPathPoint(Grid g);
 
     // 打印放置炮台的位置
     void printStartSprite();

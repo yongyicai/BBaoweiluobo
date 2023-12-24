@@ -5,6 +5,7 @@
 #include <HelpScene.h>
 #include <SelectScene.h>
 #include "GameScene.h"
+#include "Level1.h"
 #include "ui/CocosGUI.h"
 using namespace cocos2d;
 
@@ -168,8 +169,8 @@ void WelcomeScene::gotoSelectScene(cocos2d::Ref* pSender)
     float targetY = visibleSize.height; // 目标位置的Y坐标
 
     auto moveUp = MoveTo::create(duration, Vec2(0, targetY));
-    auto callback = CallFunc::create([]() {              //修改此处
-        Director::getInstance()->replaceScene(TransitionFade::create(0.5f, GameScene::create(), Color3B::BLACK)); // 切换到新场景
+    auto callback = CallFunc::create([]() {                                   //修改此处
+        Director::getInstance()->replaceScene(TransitionFade::create(0.5f, Level1Scene::create(), Color3B::BLACK)); // 切换到新场景
         });
     auto sequence = Sequence::create(moveUp, callback, nullptr);
     maskLayer->runAction(sequence);

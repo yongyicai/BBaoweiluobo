@@ -101,7 +101,7 @@ void GameScene::options()
             /* 点击后出现提示框 */
             // 类蒙版层
             maskLayer = LayerColor::create(Color4B(0, 0, 0, 150));
-            this->addChild(maskLayer, 4);
+            this->addChild(maskLayer, 6);
 
             // 创建提示框
             auto options = ImageView::create("GameScene/options.png");
@@ -230,8 +230,6 @@ void GameScene::createCountdownAnimation()
 
             // 倒计时结束后
             maskLayer->removeFromParent();
-            /* 打印放置炮台的位置 */
-            this->addChild(GameMap::create());
         }
     }, this, 1.0f, false, "countdown");
 }
@@ -243,13 +241,38 @@ bool GameMap::init()
         return false;
     }
     setupGrid(); // 设置网格
-    // 示例：添加路径点
-//addPathPoint(0, 0);
-// addPathPoint(1, 0);
- // ... 添加其他路径点
-    addPathPoint(6,6);
-   
-    GameMap::printStartSprite();
+
+    // 初始化路径
+    addPathPoint({ 1,5 });
+    addPathPoint({ 1,4 });
+    addPathPoint({ 1,3 });
+    addPathPoint({ 1,2 });
+    addPathPoint({ 2,2 });
+    addPathPoint({ 3,2 });
+    addPathPoint({ 4,2 });
+    addPathPoint({ 4,3 });
+    addPathPoint({ 5,3 });
+    addPathPoint({ 6,3 });
+    addPathPoint({ 7,3 });
+    addPathPoint({ 7,2 });
+    addPathPoint({ 8,2 });
+    addPathPoint({ 9,2 });
+    addPathPoint({ 10,2 });
+    addPathPoint({ 10,3 });
+    addPathPoint({ 10,4 });
+    addPathPoint({ 10,5 });
+
+    // 设置倒计时以匹配动画
+    int countdownNumber = 3; // 从3开始倒计时
+    auto scheduler = Director::getInstance()->getScheduler();
+    scheduler->schedule([=](float dt) mutable {
+        countdownNumber--;
+        if (countdownNumber <= 0) {
+            // 打印框格
+            GameMap::printStartSprite();
+        }
+        }, this, 1.0f, false, "countdown");
+
     return true;
 }
 
@@ -267,11 +290,11 @@ void GameMap::setupGrid() {
     }
 }
 
-void GameMap::addPathPoint(int x, int y) {
+void GameMap::addPathPoint(Grid g) {
     // 确保坐标在地图范围内
-    if (x >= 0 && x < GRID_WIDTH && y >= 0 && y < GRID_HEIGHT) {
-        path.push_back({ x, y });
-        gridMap[y][x] = false;
+    if (g.x >= 0 && g.x < GRID_WIDTH && g.y >= 0 && g.y < GRID_HEIGHT) {
+        path.push_back(g);
+        gridMap[g.y][g.x] = false;
     }
 }
 
@@ -299,6 +322,7 @@ void GameMap::printStartSprite()
             }
         }
     }
+
     // 创建一个闪烁动作
     auto blinkAction = cocos2d::Blink::create(2, 4);
 
@@ -312,4 +336,5 @@ void GameMap::printStartSprite()
 
     // 运行动作序列
     this->runAction(sequence);
+
 }
