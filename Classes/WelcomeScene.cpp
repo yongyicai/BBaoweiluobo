@@ -4,6 +4,7 @@
 #include <SettingScene.h>
 #include <HelpScene.h>
 #include <SelectScene.h>
+#include "GameScene.h"
 #include "ui/CocosGUI.h"
 using namespace cocos2d;
 
@@ -48,7 +49,7 @@ bool WelcomeScene::init()
 
     /* 漂浮的云 */
     auto cloud = Sprite::create("WelcomeScene/Cloud.PNG");
-    cloud->setOpacity(80); // 设置云的透明度
+    cloud->setOpacity(140); // 设置云的透明度
     cloud->setPosition(Vec2(-cloud->getContentSize().width, 550)); // 设置云的初始位置
     this->addChild(cloud, 0);
     // 实现横穿屏幕
@@ -167,8 +168,8 @@ void WelcomeScene::gotoSelectScene(cocos2d::Ref* pSender)
     float targetY = visibleSize.height; // 目标位置的Y坐标
 
     auto moveUp = MoveTo::create(duration, Vec2(0, targetY));
-    auto callback = CallFunc::create([]() {
-        Director::getInstance()->replaceScene(TransitionFade::create(0.5f, SelectScene::create(), Color3B::BLACK)); // 切换到新场景
+    auto callback = CallFunc::create([]() {              //修改此处
+        Director::getInstance()->replaceScene(TransitionFade::create(0.5f, GameScene::create(), Color3B::BLACK)); // 切换到新场景
         });
     auto sequence = Sequence::create(moveUp, callback, nullptr);
     maskLayer->runAction(sequence);
