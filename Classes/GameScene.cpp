@@ -1,12 +1,14 @@
 #include "GameScene.h"
 #include "SimpleAudioEngine.h"
 #include <string.h>
+#include"carrot.h"
 #include "ui/CocosGUI.h"
 #include "SelectScene.h"
 using namespace cocos2d;
 using namespace cocos2d::ui;
 
 USING_NS_CC;
+int level = 1;
 
 /* -------------------- 地图公共场景搭建 ---------------------- */
 Scene* GameScene::createScene()
@@ -202,7 +204,7 @@ void GameScene::createCountdownAnimation()
     auto circlebase = Sprite::create("GameScene/circlebase.PNG");
     circlebase->setPosition(visibleSize / 2);
     maskLayer->addChild(circlebase);
-    auto circleSprite = Sprite::create("GameScene/circle.PNG"); 
+    auto circleSprite = Sprite::create("GameScene/circle.PNG");
     circleSprite->setPosition(Vec2(visibleSize.width / 2 + 5, visibleSize.height / 2));
     maskLayer->addChild(circleSprite);
 
@@ -227,11 +229,46 @@ void GameScene::createCountdownAnimation()
         if (countdownNumber <= 0) {
             scheduler->unschedule("countdown", this); // 取消倒计时调度
             countdownSprite->setVisible(false); // 隐藏数字精灵
-
             // 倒计时结束后
             maskLayer->removeFromParent();
         }
-    }, this, 1.0f, false, "countdown");
+        //添加萝卜*************************************//
+        auto carrotLayer = Layer::create();
+        this->addChild(carrotLayer);
+
+        auto aCarrot = Sprite::create("myCarrot/lovelyCarrot.png");
+        if (level == 1)
+        {
+            aCarrot->setPosition(Vec2(837, 450));
+        }
+        carrotLayer->addChild(aCarrot);
+
+        auto bloodBar = Sprite::create("myCarrot/bloodBackground.png");  // 血条图片路径
+        bloodBar->setPosition(Vec2(aCarrot->getPosition().x, aCarrot->getPosition().y + aCarrot->getContentSize().height / 2 + 10));  // 设置血条位置在萝卜上方
+        carrotLayer->addChild(bloodBar);
+
+        auto swingAction = Sequence::create(
+            RotateBy::create(0.3f, 30.0f),  // 向右旋转30度
+            RotateBy::create(0.3f, -30.0f),  // 向左旋转30度
+            RotateBy::create(0.3f, -30.0f),  // 向左旋转30度
+            RotateBy::create(0.3f, 30.0f),  // 向右旋转30度
+            nullptr
+        );
+
+        auto standAction = RotateTo::create(0.3f, 0.0f);  // 保持直立动作
+
+        auto rotateAction = RepeatForever::create(
+            Sequence::create(
+                swingAction,
+                DelayTime::create(6.0f),  // 延迟6秒
+                standAction,
+                nullptr
+            )
+        );
+
+        aCarrot->runAction(rotateAction);
+        //****************************************//
+        }, this, 1.0f, false, "countdown");
 }
 
 /* -------------------- 对地图网格化实现 ---------------------- */

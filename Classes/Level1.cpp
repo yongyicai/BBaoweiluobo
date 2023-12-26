@@ -4,6 +4,8 @@
 #include "ui/CocosGUI.h"
 #include "SelectScene.h"
 #include "Level1.h"
+#include"Click.h"
+#include"carrot.h"
 #include "Monster.h"
 #include <vector>
 using namespace cocos2d;
@@ -29,7 +31,7 @@ bool Level1Scene::init()
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
     /* 设置背景 */
-    auto bg = Sprite::create("Level_1/Level1_bg.png");
+    auto bg = Sprite::create("Level_1/Level_1_1_bg.png");
     bg->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
     this->addChild(bg);
 
@@ -39,15 +41,53 @@ bool Level1Scene::init()
     /* 打印放置炮台的位置 */
     auto gamemap = GameMap::create();
     this->addChild(gamemap);
+    //***********************************************************//
+    for (int y = 0; y < gamemap->GRID_HEIGHT; ++y) {
+        for (int x = 0; x < gamemap->GRID_WIDTH; ++x) {
+            if (gamemap->gridMap[y][x]) {
+                auto startSprite = ImageView::create("click.png");
+                // 修改位置计算方式，确保图片位置与点击位置一致
+                startSprite->setAnchorPoint(Vec2(0.5f, 0.5f));
+                startSprite->setPosition(gamemap->gridToPixel(x, y));
+                startSprite->setVisible(false);  // 将图片设置为不可见
+                addChild(startSprite);
+            }
+        }
+    }
+    // 添加触摸事件监听器
+    auto listener = EventListenerTouchOneByOne::create();
+    listener->onTouchBegan = [=](Touch* touch, Event* event) {
+        Vec2 location = touch->getLocation();
+        bool clickedOnImage = false;
 
+        // 遍历所有子节点，查找包含点击位置的图片节点
+        for (auto image : getChildren()) {
+            if (auto sprite = dynamic_cast<ImageView*>(image)) {
+                if (sprite->getBoundingBox().containsPoint(location)) {
+                    sprite->setVisible(true);
+                    clickedOnImage = true;
+                }
+                else {
+                    sprite->setVisible(false);
+                }
+            }
+        }
+        // 如果点击位置没有图片且没有点击到其他非图片的区域，则不进行任何操作
+        if (!clickedOnImage) {
+            return false;
+        }
 
+        return true;
+    };
+
+    _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
+    //**************************************************************//
     // 初始化路径和波次
     currentWave = 0;
     getPath(gamemap);
 
     // 开始第一波
     this->schedule(CC_SCHEDULE_SELECTOR(Level1Scene::startNextWave), 3.0f);
-
 
     return true;
 }
