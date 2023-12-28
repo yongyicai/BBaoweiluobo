@@ -174,7 +174,7 @@ void WelcomeScene::gotoSelectScene(cocos2d::Ref* pSender)
 
     auto moveUp = MoveTo::create(duration, Vec2(0, targetY));
     auto callback = CallFunc::create([]() {                                   //修改此处
-        Director::getInstance()->replaceScene(TransitionFade::create(0.5f, Level1Scene::create(), Color3B::BLACK)); // 切换到新场景
+        Director::getInstance()->replaceScene(TransitionFade::create(0.5f, SelectScene::create(), Color3B::BLACK)); // 切换到新场景
         });
     auto sequence = Sequence::create(moveUp, callback, nullptr);
     maskLayer->runAction(sequence);
