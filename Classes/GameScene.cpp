@@ -232,42 +232,7 @@ void GameScene::createCountdownAnimation()
             // 倒计时结束后
             maskLayer->removeFromParent();
         }
-        //添加萝卜*************************************//
-        auto carrotLayer = Layer::create();
-        this->addChild(carrotLayer);
-
-        auto aCarrot = Sprite::create("myCarrot/lovelyCarrot.png");
-        if (level == 1)
-        {
-            aCarrot->setPosition(Vec2(837, 450));
-        }
-        carrotLayer->addChild(aCarrot);
-
-        auto bloodBar = Sprite::create("myCarrot/bloodBackground.png");  // 血条图片路径
-        bloodBar->setPosition(Vec2(aCarrot->getPosition().x, aCarrot->getPosition().y + aCarrot->getContentSize().height / 2 + 10));  // 设置血条位置在萝卜上方
-        carrotLayer->addChild(bloodBar);
-
-        auto swingAction = Sequence::create(
-            RotateBy::create(0.3f, 30.0f),  // 向右旋转30度
-            RotateBy::create(0.3f, -30.0f),  // 向左旋转30度
-            RotateBy::create(0.3f, -30.0f),  // 向左旋转30度
-            RotateBy::create(0.3f, 30.0f),  // 向右旋转30度
-            nullptr
-        );
-
-        auto standAction = RotateTo::create(0.3f, 0.0f);  // 保持直立动作
-
-        auto rotateAction = RepeatForever::create(
-            Sequence::create(
-                swingAction,
-                DelayTime::create(6.0f),  // 延迟6秒
-                standAction,
-                nullptr
-            )
-        );
-
-        aCarrot->runAction(rotateAction);
-        //****************************************//
+      
         }, this, 1.0f, false, "countdown");
 }
 

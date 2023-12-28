@@ -1,8 +1,5 @@
 #include "AppDelegate.h"
-#include "WelcomeScene.h"
-#include "SettingScene.h"
-#include "HelpScene.h"
-#include "SelectScene.h"
+#include "Global.h"
 
 // #define USE_AUDIO_ENGINE 1
 // #define USE_SIMPLE_AUDIO_ENGINE 1
@@ -25,6 +22,8 @@ static cocos2d::Size designResolutionSize = cocos2d::Size(960, 640);
 static cocos2d::Size smallResolutionSize = cocos2d::Size(480, 320);
 static cocos2d::Size mediumResolutionSize = cocos2d::Size(960, 640);
 static cocos2d::Size largeResolutionSize = cocos2d::Size(2048, 1536);
+
+Carrot* globalCarrot = nullptr; // 全局变量的定义
 
 AppDelegate::AppDelegate()
 {

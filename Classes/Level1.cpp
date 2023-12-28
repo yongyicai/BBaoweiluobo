@@ -4,8 +4,7 @@
 #include "ui/CocosGUI.h"
 #include "SelectScene.h"
 #include "Level1.h"
-#include"Click.h"
-#include"carrot.h"
+#include"Global.h"
 #include "Monster.h"
 #include <vector>
 using namespace cocos2d;
@@ -41,11 +40,40 @@ bool Level1Scene::init()
     /* 打印放置炮台的位置 */
     auto gamemap = GameMap::create();
     this->addChild(gamemap);
-    //***********************************************************//
+
+    // 初始化路径和波次
+    currentWave = 0;
+    getPath(gamemap);
+
+    globalCarrot = Carrot::create();
+    globalCarrot->setPosition(path[path.size() - 1]);
+    this->addChild(globalCarrot);
+
+    // 点击事件
+    Level1Scene::click(gamemap);
+
+
+    // 开始第一波
+    this->schedule(CC_SCHEDULE_SELECTOR(Level1Scene::startNextWave), 6.0f);
+
+    return true;
+}
+
+
+void Level1Scene::getPath(GameMap* gamemap)
+{
+    // 计算路径的像素坐标
+    for (const auto& grid : gamemap->path)
+    {
+        path.push_back(gamemap->gridToPixel(grid.x, grid.y));
+    }
+}
+void Level1Scene::click(GameMap* gamemap)
+{
     for (int y = 0; y < gamemap->GRID_HEIGHT; ++y) {
         for (int x = 0; x < gamemap->GRID_WIDTH; ++x) {
             if (gamemap->gridMap[y][x]) {
-                auto startSprite = ImageView::create("click.png");
+                auto startSprite = ImageView::create("GameScene/click.png");
                 // 修改位置计算方式，确保图片位置与点击位置一致
                 startSprite->setAnchorPoint(Vec2(0.5f, 0.5f));
                 startSprite->setPosition(gamemap->gridToPixel(x, y));
@@ -81,25 +109,7 @@ bool Level1Scene::init()
     };
 
     _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
-    //**************************************************************//
-    // 初始化路径和波次
-    currentWave = 0;
-    getPath(gamemap);
 
-    // 开始第一波
-    this->schedule(CC_SCHEDULE_SELECTOR(Level1Scene::startNextWave), 3.0f);
-
-    return true;
-}
-
-
-void Level1Scene::getPath(GameMap* gamemap)
-{
-    // 计算路径的像素坐标
-    for (const auto& grid : gamemap->path)
-    {
-        path.push_back(gamemap->gridToPixel(grid.x, grid.y));
-    }
 }
 
 void Level1Scene::startNextWave(float dt) {
@@ -120,16 +130,15 @@ void Level1Scene::startNextWave(float dt) {
 void Level1Scene::spawnMonsters(int waveIndex) {
     // 根据波次决定生成怪物的类型和数量
     int monsterType = (waveIndex % 3) + 1; // 举例：每波切换一种怪物类型
-    int monsterCount = 5 + (waveIndex % 3); // 举例：每波怪物数量在5到7之间
+    int monsterCount = 4 + (waveIndex % 3); // 举例：每波怪物数量在5到7之间
 
     for (int i = 0; i < monsterCount; ++i) {
         // 创建怪物并设置位置到路径起点
         auto monster = Monster::createWithType(monsterType);
         monster->setPosition(path.front()); // 假设路径的第一个点是起点
         this->addChild(monster);
-
-        // 设置怪物的移动路径
-        monster->moveOnPath(path);
+        monster->setVisible(false);
+        monsters.push_back(monster);
 
         // 设置怪物间的出现时间间隔
         this->scheduleOnce([this, monster](float dt) {
@@ -141,5 +150,6 @@ void Level1Scene::spawnMonsters(int waveIndex) {
 
 void Level1Scene::endGame() {
     // 处理游戏结束逻辑
-    cocos2d::log("Game Over!");
+    globalCarrot = nullptr;
+    log("Game Over!");
 }

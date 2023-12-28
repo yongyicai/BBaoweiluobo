@@ -2,12 +2,12 @@
 #define __MONSTER_H__
 
 #include "cocos2d.h"
-
+#include "Global.h"
 class Monster : public cocos2d::Sprite {
 public:
     static Monster* createWithType(int monsterType);
 
-    void moveOnPath(const std::vector<cocos2d::Vec2>& path);
+    void moveOnPath(const std::vector<Vec2>& path);
     void getAttacked(int damage);
     void showHitEffect();
     void dropCoins();

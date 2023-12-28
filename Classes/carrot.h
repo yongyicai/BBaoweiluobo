@@ -3,17 +3,20 @@
 
 #include "cocos2d.h"
 
-class Carrot : public cocos2d::Sprite
-{
+class Carrot : public cocos2d::Node {
 public:
-    static Carrot* createCarrot();
+    virtual bool init() override;
+    int health;
+    std::vector<std::string> healthTextures; // 贴图数组，用于不同血量的贴图
+   
+    cocos2d::Sprite* aCarrot;
+    cocos2d::Sprite* bloodBar;
+    void setupCarrot(const cocos2d::Vec2& position);
+    void setupBloodBar();
 
-    virtual bool init();
-
-    // 添加血量属性和相关方法
-    CC_SYNTHESIZE(int, m_hp, Hp);  // 血量属性
-
-    void decreaseHp(int value);  // 减少血量的方法
+    void setupSwingAction();
+    void decreaseHealth();
+    void updateAppearance();
 
     CREATE_FUNC(Carrot);
 };

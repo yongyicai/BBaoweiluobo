@@ -1,4 +1,4 @@
-#include "Monster.h"
+#include "Global.h"
 using namespace cocos2d;
 USING_NS_CC;
 
@@ -52,9 +52,6 @@ bool Monster::init() {
 void Monster::moveOnPath(const std::vector<Vec2>& path) {
     if (path.empty()) return;
 
-    // 将怪物移动到路径的起始点
-    this->setPosition(path.front());
-
     // 创建动作序列
     Vector<FiniteTimeAction*> actions;
 
@@ -66,6 +63,15 @@ void Monster::moveOnPath(const std::vector<Vec2>& path) {
         auto moveAction = MoveTo::create(moveDuration, path[i]);
         actions.pushBack(moveAction);
     }
+    // 添加一个回调函数，当移动完成时调用
+    auto callbackAction = cocos2d::CallFunc::create([this]() {
+
+        globalCarrot->decreaseHealth(); // 减少萝卜的血量
+
+        this->removeFromParent(); // 移除怪物
+        // 还可以在这里添加其他代码，例如更新游戏状态
+        });
+    actions.pushBack(callbackAction);
 
     // 创建序列动作
     auto sequence = Sequence::create(actions);
@@ -102,4 +108,3 @@ void Monster::die() {
     dropCoins();
     this->removeFromParent();
 }
-
