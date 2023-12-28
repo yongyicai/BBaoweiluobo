@@ -3,6 +3,7 @@
 #include <string.h>
 #include <SettingScene.h>
 #include <HelpScene.h>
+#include "audio/include/AudioEngine.h"
 #include <SelectScene.h>
 #include "GameScene.h"
 #include "Level1.h"
@@ -35,6 +36,8 @@ void WelcomeScene::setMenu(char picture[], Vec2 position)
 // 初始化欢迎界面
 bool WelcomeScene::init()
 {
+    AudioEngine::preload("sound/backGround.ogg");
+    int AudioID = AudioEngine::play2d("sound/backGround.ogg");
     /* 初始化场景 */
     if ( !Scene::init() )
     {
@@ -158,6 +161,7 @@ bool WelcomeScene::init()
 /* 进入关卡选择界面 */ 
 void WelcomeScene::gotoSelectScene(cocos2d::Ref* pSender)
 {
+    AudioEngine::stopAll();
     // 获取屏幕大小
     auto visibleSize = Director::getInstance()->getVisibleSize();
 
