@@ -9,10 +9,11 @@ using namespace std;
 class Level1Scene: public Scene
 {
 public:
+    static Scene* createScene();
+
     struct Grid {
         int x, y;
     };
-    static Scene* createScene();
 
     virtual bool init();
     void click(GameMap* gamemap);

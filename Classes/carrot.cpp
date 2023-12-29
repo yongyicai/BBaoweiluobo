@@ -1,5 +1,6 @@
 #include "Global.h"
-
+using namespace cocos2d;
+using namespace cocos2d::ui;
 USING_NS_CC;
 
 bool Carrot::init() {
@@ -59,10 +60,6 @@ void Carrot::decreaseHealth() {
     if (health < 0) health = 0; // 防止血量变成负数
 
     updateAppearance();
-
-    if (health <= 0) {
-        globalCarrot = nullptr;
-    }
 }
 
 void Carrot::updateAppearance() {

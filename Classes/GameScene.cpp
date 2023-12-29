@@ -1,9 +1,6 @@
-#include "GameScene.h"
 #include "SimpleAudioEngine.h"
 #include <string.h>
-#include"carrot.h"
-#include "ui/CocosGUI.h"
-#include "SelectScene.h"
+#include "Global.h"
 using namespace cocos2d;
 using namespace cocos2d::ui;
 
@@ -82,8 +79,6 @@ bool GameScene::init()
     GameScene::options();
 
     /* 倒计时动画 */
-    GameScene::createCountdownAnimation();
-
 
     return true;
 }
@@ -117,6 +112,7 @@ void GameScene::options()
             options->addChild(restartButton);
             restartButton->addClickEventListener([=](Ref*) {
                 Director::getInstance()->resume();
+                Director::getInstance()->getScheduler()->setTimeScale(1);
 
                 // 重新开始游戏
                 auto maskLayer = LayerColor::create(Color4B(0, 0, 0, 0));  // 透明的遮罩层
@@ -126,7 +122,7 @@ void GameScene::options()
 
                 auto moveUp = MoveTo::create(duration, Vec2(0, targetY));
                 auto callback = CallFunc::create([]() {
-                    Director::getInstance()->replaceScene(TransitionFade::create(0.5f, GameScene::create(), Color3B::BLACK)); // 切换到新场景
+                    Director::getInstance()->replaceScene(TransitionFade::create(0.5f, Level1Scene::create(), Color3B::BLACK)); // 切换到新场景
                     });
                 auto sequence = Sequence::create(moveUp, callback, nullptr);
                 maskLayer->runAction(sequence);
@@ -138,6 +134,7 @@ void GameScene::options()
             options->addChild(returnButton);
             returnButton->addClickEventListener([=](Ref*) {
                 Director::getInstance()->resume();
+                Director::getInstance()->getScheduler()->setTimeScale(1);
 
                 // 返回选择界面
                 auto maskLayer = LayerColor::create(Color4B(0, 0, 0, 0));  // 透明的遮罩层
@@ -243,26 +240,6 @@ bool GameMap::init()
         return false;
     }
     setupGrid(); // 设置网格
-
-    // 初始化路径
-    addPathPoint({ 1,5 });
-    addPathPoint({ 1,4 });
-    addPathPoint({ 1,3 });
-    addPathPoint({ 1,2 });
-    addPathPoint({ 2,2 });
-    addPathPoint({ 3,2 });
-    addPathPoint({ 4,2 });
-    addPathPoint({ 4,3 });
-    addPathPoint({ 5,3 });
-    addPathPoint({ 6,3 });
-    addPathPoint({ 7,3 });
-    addPathPoint({ 7,2 });
-    addPathPoint({ 8,2 });
-    addPathPoint({ 9,2 });
-    addPathPoint({ 10,2 });
-    addPathPoint({ 10,3 });
-    addPathPoint({ 10,4 });
-    addPathPoint({ 10,5 });
 
     // 设置倒计时以匹配动画
     int countdownNumber = 3; // 从3开始倒计时
