@@ -15,6 +15,7 @@ public:
     static Scene* createScene();
 
     virtual bool init();
+    void click(GameMap* gamemap);
     void startNextWave(float dt);
     void spawnMonsters(int waveIndex);
     void endGame();
