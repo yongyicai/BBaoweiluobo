@@ -2,7 +2,8 @@
 #include "ui/CocosGUI.h"
 #include "cocos/ui/UIImageView.h"
 #include "TowerBottle.h"
-#include "Bullet.h"
+#include "BottleBullet.h"
+#include "Monster.h"
 USING_NS_CC;
 
 using namespace cocos2d::ui;
@@ -11,65 +12,43 @@ using namespace cocos2d;
 const int _tower_bottle = 1;
 
 
-Bottle::Bottle() : level(1), attackPower(10), attackSpeed(1.0f), towerType(0)
+Bottle::Bottle() : level(1), attackPower(10), attackSpeed(1.0f), towerType(0),attackRange(100)
 {
     // 初始化代码
 }
 
 
 
-Bottle* Bottle::create(Vec2 position)
+Bottle* Bottle::create()
 {
     Bottle* bottle = new (std::nothrow) Bottle();
-    if (bottle && bottle->levelToImagePathMap.count(bottle->level) > 0&& bottle->initWithFile(bottle->levelToImagePathMap.at(bottle->level)))
-    {
-        bottle->autorelease();
-        //bottle->towerType = towerType;
-        // 根据类型初始化不同的属性
-        bottle->setPosition(position);
-        auto scene = cocos2d::Director::getInstance()->getRunningScene();
-        scene->addChild(bottle);
-        return bottle;
-    }
+
     
+        if (bottle && (bottle->initWithFile("Tower/Bottle/ID1_22.PNG")))
+        {
+            bottle->autorelease();
+
+
+            return bottle;
+        }
+
     CC_SAFE_DELETE(bottle);
     return nullptr;
 }
 
-//bool Bottle::init()
-//{
-//    if (!Sprite::init())
-//    {
-//        return false;
-//    }
-//    // 初始化炮台
-//    return true;
-//}
+
 void Bottle::attack(cocos2d::Sprite* target)
 {
-    //Bullet* bullet = Bullet::create();
-    //if (bullet) {
-    //    // 设置子弹的起始位置为塔的位置
-    //    bullet->setPosition(this->getPosition());
-
-    //    // 计算瞄准目标的方向向量
-    //    cocos2d::Vec2 direction = target->getPosition() - this->getPosition();
-    //    direction.normalize();
-
-    //    // 计算子弹的速度向量
-    //    float bulletSpeed = 500.0f;  // 子弹速度
-    //    cocos2d::Vec2 velocity = direction * bulletSpeed;
-
-    //    // 设置子弹的速度
-    //    bullet->setVelocity(velocity);
-
-    //    // 将子弹添加到场景中
-    //    auto scene = cocos2d::Director::getInstance()->getRunningScene();
-    //    scene->addChild(bullet);
-    //}
-    // 实现攻击逻辑
-    // 这可能涉及到创建一个 Projectile 类，并将其发射到目标
-    // 这里可能不应该直接new bullet，因为bullet应该是发射物的基类，对于每一个tower都应该有对应的发射物子类
+    BottleBullet* bottlebullet = BottleBullet::create();
+    if (bottlebullet) {
+        // 设置子弹的起始位置为塔的位置
+        bottlebullet->setPosition(this->getPosition());
+      
+        // 将子弹添加到场景中
+        auto scene = cocos2d::Director::getInstance()->getRunningScene();
+        scene->addChild(bottlebullet);
+    }
+    
 }
 
 void Bottle::upgrade()
@@ -89,4 +68,45 @@ void Bottle::upgrade()
 void Bottle::setTowerImage(const std::string& imagePath) {
     auto texture = cocos2d::Director::getInstance()->getTextureCache()->addImage(imagePath);
     setTexture(texture);
+}
+
+void Bottle::update(float deltaTime, std::vector<Monster*>& monsterList)
+{
+    // 检测攻击范围内是否有怪物
+    Monster* target = findTargetInAttackRange(monsterList);
+
+    if (target)
+    {
+        // 自动瞄准敌人
+        rotateTowerTowardsTarget(target);
+
+        //应该设置冷却时间
+        attack(target);
+    }
+}
+
+Monster* Bottle::findTargetInAttackRange(std::vector<Monster*> monsterList)
+{
+    // 遍历怪物列表，查找位于攻击范围内的怪物
+    for (Monster* monster : monsterList)
+    {
+        float distance = (getPosition().distance(monster->getPosition()));
+
+        if (distance <= attackRange)
+        {
+            return monster;
+        }
+    }
+
+    return nullptr;
+}
+
+void Bottle::rotateTowerTowardsTarget(Monster* target)
+{
+    // 计算塔与目标怪物之间的角度
+    Vec2 direction = target->getPosition() - getPosition();
+    float angle = atan2(direction.y, direction.x);
+
+    // 将角度应用于塔的旋转
+    setRotation(-CC_RADIANS_TO_DEGREES(angle));
 }

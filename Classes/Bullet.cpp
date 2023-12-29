@@ -5,10 +5,7 @@ Bullet::Bullet() : damage(0)
     // 初始化代码
 }
 
-//Bullet::~Bullet()
-//{
-//    // 清理代码
-//}
+
 
 Bullet* Bullet::create(const cocos2d::Vec2& position, const cocos2d::Vec2& direction)
 {

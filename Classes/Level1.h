@@ -1,8 +1,8 @@
 #ifndef __LEVEL1_SCENE_H__
 #define __LEVEL1_SCENE_H__
-#include "Monster.h"
+#include "Global.h"
 #include "cocos2d.h"
-
+#include "TowerBottle.h"
 using namespace cocos2d;
 using namespace std;
 
@@ -19,7 +19,7 @@ public:
     void startNextWave(float dt);
     void spawnMonsters(int waveIndex);
     void endGame();
-
+    void update(float dt) override;
     int currentWave;
     const int totalWaves = 15;
     // 存储路径
@@ -27,8 +27,8 @@ public:
 
     void getPath(GameMap* gamemap);
 
-    std::vector<Monster*> monsters; // 用来存储怪物的数组
-
+     // 用来存储怪物的数组
+    
     CREATE_FUNC(Level1Scene);
 };
 #endif

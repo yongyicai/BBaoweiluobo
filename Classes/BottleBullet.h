@@ -10,7 +10,7 @@ public:
     BottleBullet();
     /*virtual ~BottleBullet();*/
 
-    static BottleBullet* create(const cocos2d::Vec2& position, const cocos2d::Vec2& direction);
+    static BottleBullet* create();
 
     virtual bool init() override;
     virtual void update(float delta) override;

@@ -5,12 +5,14 @@
 #include "SelectScene.h"
 #include "Level1.h"
 #include"Global.h"
-#include "Monster.h"
 #include <vector>
 using namespace cocos2d;
 using namespace cocos2d::ui;
 
 USING_NS_CC;
+std::vector<Monster*> monsters; 
+Bottle* bottle = Bottle::create();
+
 
 Scene* Level1Scene::createScene()
 {
@@ -45,9 +47,9 @@ bool Level1Scene::init()
     currentWave = 0;
     getPath(gamemap);
 
-    globalCarrot = Carrot::create();
-    globalCarrot->setPosition(path[path.size() - 1]);
-    this->addChild(globalCarrot);
+    //globalCarrot = Carrot::create();
+   // globalCarrot->setPosition(path[path.size() - 1]);
+   // this->addChild(globalCarrot);
 
     // 点击事件
     Level1Scene::click(gamemap);
@@ -56,6 +58,10 @@ bool Level1Scene::init()
     // 开始第一波
     this->schedule(CC_SCHEDULE_SELECTOR(Level1Scene::startNextWave), 6.0f);
 
+    
+    //bottle->setPosition(this->getContentSize() / 2);
+    //this->addChild(bottle);
+    //this->scheduleUpdate();
     return true;
 }
 
@@ -108,6 +114,12 @@ void Level1Scene::click(GameMap* gamemap)
         return true;
     };
 
+    
+    // 创建怪物列表（假设已实现）
+
+    // 设置每帧调用更新
+    this->scheduleUpdate();
+
     _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 
 }
@@ -138,6 +150,7 @@ void Level1Scene::spawnMonsters(int waveIndex) {
         monster->setPosition(path.front()); // 假设路径的第一个点是起点
         this->addChild(monster);
         monster->setVisible(false);
+
         monsters.push_back(monster);
 
         // 设置怪物间的出现时间间隔
@@ -152,4 +165,16 @@ void Level1Scene::endGame() {
     // 处理游戏结束逻辑
     globalCarrot = nullptr;
     log("Game Over!");
+}
+
+void Level1Scene::update(float dt) {
+    // 更新 Bottle
+    for (Monster* monster : monsters) {
+         if (bottle->findTargetInAttackRange(monsters)) {
+             bottle->attack(monster); // 如果怪物在范围内，进行攻击
+         }
+        
+    }
+
+    // 更新怪物列表（假设已实现）
 }

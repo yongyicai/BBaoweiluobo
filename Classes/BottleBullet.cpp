@@ -10,15 +10,15 @@ BottleBullet::BottleBullet() : damage(0),speed(10)
 //    // 清理代码
 //}
 
-BottleBullet* BottleBullet::create(const cocos2d::Vec2& position, const cocos2d::Vec2& direction)
+BottleBullet* BottleBullet::create()
 {
     //bottle&& bottle->levelToImagePathMap.count(bottle->level) > 0 && bottle->initWithFile())
     BottleBullet* bottlebullet = new (std::nothrow) BottleBullet();
     if (bottlebullet && bottlebullet->levelToImagePathMap.count(bottlebullet->level) > 0&& bottlebullet->initWithFile(bottlebullet->levelToImagePathMap.at(bottlebullet->level)))
     {
         bottlebullet->autorelease();
-        bottlebullet->setPosition(position);
-        bottlebullet->direction = direction;
+        
+        
         // 根据需要进行进一步的初始化
         return bottlebullet;
     }
