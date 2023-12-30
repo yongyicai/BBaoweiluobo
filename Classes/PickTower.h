@@ -1,32 +1,28 @@
 #ifndef __PICKTOWER_H__
 #define __PICKTOWER_H__
-#include"Level1.h"
+#include "Level1.h"
 #include "cocos2d.h"
+#include "TowerBottle.h"
+#include "Tower.h"// 引入炮塔相关的头文件
 
-class PickTower : public cocos2d::Sprite
-{
+class PickTower : public cocos2d::Node {
 public:
-    cocos2d::Sprite* startSprite; // 确保已声明
-    cocos2d::Sprite* tower1;  // 确保声明了 tower1
-    cocos2d::Sprite* tower2;  // 确保声明了 tower2
-    static PickTower* create() {
-        PickTower* pRet = new(std::nothrow) PickTower();
-        if (pRet && pRet->init()) {
-            pRet->autorelease();
-            return pRet;
-        }
-        else {
-            delete pRet;
-            return nullptr;
-        }
-    }
-    virtual bool init();
-    void setInitPositions(const std::vector<Vec2>& positions) {
-        initPositions = positions;
-    }
+    static PickTower* createWithPositions(const std::vector<cocos2d::Vec2>& positions);
+    bool initWithPositions(const std::vector<cocos2d::Vec2>& positions);
+    bool onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event);
+    void showMenuAtPosition(const cocos2d::Vec2& position);
+    void createTowerBottle(const cocos2d::Vec2& position);
+    void createTowerFan(const cocos2d::Vec2& position);
+    void addTowerTouchListener(Tower* tower);
+    bool isPointNearLocation(const cocos2d::Vec2& point, const cocos2d::Vec2& location);
+
 private:
-    std::vector<cocos2d::Sprite*> gridSprites; // 存储所有网格图像
-    std::vector<cocos2d::Vec2> initPositions;  // 存储所有初始位置
+    Sprite* tower1Item;
+    Sprite* tower2Item;
+    cocos2d::Node* menu;                  // 选择菜单
+    cocos2d::Vec2 selectedPosition;       // 当前选中的位置
+    std::vector<cocos2d::Vec2> Positions; // 可点击的位置
 };
+
 
 #endif

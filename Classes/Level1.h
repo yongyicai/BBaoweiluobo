@@ -1,8 +1,8 @@
 #ifndef __LEVEL1_SCENE_H__
 #define __LEVEL1_SCENE_H__
 #include "Monster.h"
+#include "GameScene.h"
 #include "cocos2d.h"
-#include"PickTower.h"
 
 using namespace cocos2d;
 using namespace std;
@@ -10,29 +10,28 @@ using namespace std;
 class Level1Scene : public Scene
 {
 public:
+    static Scene* createScene();
+
     struct Grid {
         int x, y;
     };
-    static Scene* createScene();
 
-    virtual bool init();
-    void click(GameMap* gamemap);
+    virtual bool init()override;
     void startNextWave(float dt);
     void spawnMonsters(int waveIndex);
     void endGame();
-   
 
-    int currentWave;
-    const int totalWaves = 15;
+    /*表示波数*/
+    cocos2d::Label* waveLabel; // 用于显示波数的标签
+    int currentWave;           // 当前波数
+    const int totalWaves = 15; // 总波数
     // 存储路径
     vector<Vec2> path;
 
     void getPath(GameMap* gamemap);
 
-    std::vector<Monster*> monsters; // 用来存储怪物的数组
+    void update(float dt);
 
     CREATE_FUNC(Level1Scene);
-private:
-    
 };
 #endif

@@ -1,5 +1,6 @@
 #include "Global.h"
-
+using namespace cocos2d;
+using namespace cocos2d::ui;
 USING_NS_CC;
 
 bool Carrot::init() {
@@ -13,28 +14,35 @@ bool Carrot::init() {
     // 延迟3秒后创建萝卜
     auto delay = DelayTime::create(3.0f);
     auto createCarrot = CallFunc::create([this]() {
+        // 创建萝卜
         setupCarrot(Vec2::ZERO);
-        // setupBloodBar();
+
+        // 创建血量底图精灵
+        auto healthBackground = cocos2d::Sprite::create("myCarrot/Hp.png");
+        healthBackground->setPosition(Vec2(this->getContentSize().width / 2, this->getContentSize().height / 2 + 60));
+        this->addChild(healthBackground);
+
+        // 创建血量标签
+        healthLabel = cocos2d::Label::createWithTTF("", "fonts/arial.ttf", 24);
+        healthLabel->setPosition(healthBackground->getContentSize().width / 2 + 10, healthBackground->getContentSize().height / 2);
+        healthLabel->setString(std::to_string(health));
+        healthBackground->addChild(healthLabel);
+
+        // 萝卜摇摆动作
         setupSwingAction();
-        updateAppearance(); // 根据初始血量更新外观
         });
     auto sequence = Sequence::create(delay, createCarrot, nullptr);
     runAction(sequence);
 
     return true;
 }
+
 void Carrot::setupCarrot(const Vec2& position) {
     aCarrot = Sprite::create("myCarrot/HP_MAX.PNG");
-    aCarrot->setPosition(position);
+    aCarrot->setPosition(position.x + 10, position.y + 10);
     this->addChild(aCarrot);
 }
 
-void Carrot::setupBloodBar() {
-    bloodBar = Sprite::create("myCarrot/bloodBackground.png");
-    bloodBar->setPosition(Vec2(aCarrot->getPosition().x,
-        aCarrot->getPosition().y + aCarrot->getContentSize().height / 2 + 10));
-    this->addChild(bloodBar);
-}
 
 void Carrot::setupSwingAction() {
     auto swingAction = Sequence::create(
@@ -62,16 +70,14 @@ void Carrot::decreaseHealth() {
     health--;
     if (health < 0) health = 0; // 防止血量变成负数
 
+    // 更新血量
+    healthLabel->setString(std::to_string(health));
     updateAppearance();
-
-    if (health <= 0) {
-        globalCarrot = nullptr;
-    }
 }
 
 void Carrot::updateAppearance() {
-    if (health == 9) {
-        aCarrot->setTexture(healthTextures[1]);
+    if (health  == 9) {
+        aCarrot->setTexture(healthTextures[1]);    
     }
     else if (health == 8 || health == 7) {
         aCarrot->setTexture(healthTextures[2]);

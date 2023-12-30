@@ -2,6 +2,7 @@
 #define __TOWER_H__
 
 #include "cocos2d.h"
+#include "Monster.h"
 using namespace cocos2d;
 using namespace cocos2d::ui;
 
@@ -17,16 +18,14 @@ public:
     virtual void attack();//攻击，实例化一个bullet，寻路，到怪物身上消失，再次生成。瞄准时要改变角度
     virtual void upgrade() ;//升级，各项属性的升级，改变图片
     virtual void remove() ;//移除
-    virtual void onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event);//点击时展示范围
-    virtual void onTouchEnded(cocos2d::Touch* touch, cocos2d::Event* event);
-    virtual void setTowerImage(const std::string& imagePath);
+    virtual void showAttackRange(); // 显示攻击范围
+    virtual void showUpgradeAndRemoveButtons(); // 显示升级和移除按钮
 protected:
     int level;
-    int attackPower;
     int towerType;
-    float attackSpeed;
-    float attackRange;
-    
-
+    std::vector<Monster*> monstersInRange; // 在范围内的怪物数组
+    float attackRange; //攻击范围
+    float attackSpeed; // 攻击速度
+    float timeSinceLastAttack;
 };
 #endif

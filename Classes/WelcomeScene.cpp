@@ -1,8 +1,9 @@
 #include "WelcomeScene.h"
-#include "audio/include/AudioEngine.h"
+#include "SimpleAudioEngine.h"
 #include <string.h>
 #include <SettingScene.h>
 #include <HelpScene.h>
+#include "audio/include/AudioEngine.h"
 #include <SelectScene.h>
 #include "GameScene.h"
 #include "Level1.h"
@@ -36,11 +37,14 @@ void WelcomeScene::setMenu(char picture[], Vec2 position)
 // 初始化欢迎界面
 bool WelcomeScene::init()
 {
+    AudioEngine::preload("sound/backGround.ogg");
+    int AudioID = AudioEngine::play2d("sound/backGround.ogg");
     /* 初始化场景 */
     if ( !Scene::init() )
     {
         return false;
     }
+
     /* 获取屏幕大小 */
     auto visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
@@ -67,11 +71,7 @@ bool WelcomeScene::init()
     setMenu("WelcomeScene/Leaf3.PNG", Vec2(480, 505));//  萝卜叶子3
     setMenu("WelcomeScene/CarrotBody.PNG", Vec2(visibleSize.width / 2, visibleSize.height * 0.6)); // 中心萝卜
     setMenu("WelcomeScene/MainTitle.PNG", Vec2(visibleSize.width / 2 + 30, visibleSize.height / 2 - 30));// “保卫萝卜”字样
-    //背景音乐//
-    //******************************************************************//
-    AudioEngine::preload("sound/backGround.ogg");
-    int AudioID = AudioEngine::play2d("sound/backGround.ogg");
-    //*******************************************************************//
+
     /* 上下移动的怪兽 */ 
     auto flymonster = Sprite::create("WelcomeScene/FlyMonster.PNG");
     flymonster->setPosition(Vec2(180, 470)); // 设置怪兽的初始位置
@@ -81,6 +81,7 @@ bool WelcomeScene::init()
     auto moveDown = moveUp->reverse(); // 向下移动同样的距离
     auto floatAction = RepeatForever::create(Sequence::create(moveUp, moveDown, nullptr)); // 不断重复上下移动的动作
     flymonster->runAction(floatAction);
+
     /* 设置按钮 */
     auto settingsButton = ui::Button::create("Btn_Set.PNG", "Btn_SetLight.PNG");
     settingsButton->setPosition(Vec2(210, 230)); // 设置按钮的初始位置

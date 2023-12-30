@@ -1,5 +1,11 @@
 #include "AppDelegate.h"
-#include "Global.h"
+#include "WelcomeScene.h"
+#include "Carrot.h"
+#include "GoldCoin.h"
+#include "Monster.h"
+#include "TowerBottle.h"
+#include "Fan.h"
+#include "Shit.h"
 
 // #define USE_AUDIO_ENGINE 1
 // #define USE_SIMPLE_AUDIO_ENGINE 1
@@ -24,6 +30,11 @@ static cocos2d::Size mediumResolutionSize = cocos2d::Size(960, 640);
 static cocos2d::Size largeResolutionSize = cocos2d::Size(2048, 1536);
 
 Carrot* globalCarrot = nullptr; // 全局变量的定义
+GoldCoin* goldCoin = nullptr;
+std::vector<Monster*> monsters; // 用来存储怪物的数组
+std::vector<Fan*> fans;
+std::vector<Bottle*> bottles;
+std::vector<Shit*> shits;
 
 AppDelegate::AppDelegate()
 {

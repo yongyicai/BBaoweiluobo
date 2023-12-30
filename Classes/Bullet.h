@@ -3,26 +3,19 @@
 #define __BULLET_H__
 
 #include "cocos2d.h"
+#include "Monster.h"
 
-class Bullet : public cocos2d::Sprite
-{
+class Bullet : public cocos2d::Sprite {
 public:
-    Bullet();
+    static Bullet* createWithTarget(Monster* target, const std::string& filename, float speed, int damage);
+    void initOptions(Monster* target, float speed, int damage);
+    void moveToTarget();
+    void onHitMonster(Monster* monster);
 
-    static Bullet* create(const cocos2d::Vec2& position, const cocos2d::Vec2& direction);
-
-    virtual bool init() override;
-    virtual void update(float delta) override;
-
-    void setDamage(int damage);
-
-protected:
+private:
+    Monster* target;
+    float speed;
     int damage;
-    int speed;
-    int level;
-    cocos2d::Vec2 direction;
 };
 
-#endif
-
-
+#endif // __BULLET_H__

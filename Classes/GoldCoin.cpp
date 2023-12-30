@@ -1,6 +1,5 @@
 #include"cocos2d.h"
-#include"GameScene.h"
-#include "Money.h"
+#include "GoldCoin.h"
 
 USING_NS_CC;
 
@@ -14,14 +13,14 @@ bool GoldCoin::init()
     m_value = 0;
 
     // 创建用于显示金币数量的标签
-    m_label = Label::createWithTTF("300", "fonts/arial.ttf", 24);
-    m_label->setPosition(Vec2(100, 100));
+    m_label = Label::createWithTTF("", "fonts/arial.ttf", 24);
+    m_label->setPosition(Vec2(120, 607));
     addChild(m_label);
 
     return true;
 }
 
-//击败怪物
+//击败怪物或卖出物品
 void GoldCoin::earnGold(int amount)
 {
     m_value += amount;
@@ -47,5 +46,5 @@ void GoldCoin::updateGoldValue(int goldValue)
 
 void GoldCoin::updateGoldLabel()
 {
-    this->m_label->setString("Gold: " + std::to_string(m_value));
+    this->m_label->setString(std::to_string(m_value));
 }

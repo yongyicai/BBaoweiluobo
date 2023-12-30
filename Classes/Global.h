@@ -1,17 +1,21 @@
-// Global.h
 #ifndef GLOBAL_H
 #define GLOBAL_H
-#include "ui/CocosGUI.h"
 
-#include "WelcomeScene.h"
-#include "SettingScene.h"
-#include "HelpScene.h"
-#include "SelectScene.h"
-#include "Monster.h"
-#include "GameScene.h"
-#include "Level1.h"
+#include "ui/CocosGUI.h"
 #include "Carrot.h"
+#include "Monster.h"
+#include "GoldCoin.h"
+#include "Fan.h"
+#include "TowerBottle.h"
+#include "Shit.h"
+
 
 extern Carrot* globalCarrot; // 全局变量的声明
+extern GoldCoin* goldCoin; // 金币系统
 
-#endif // GLOBAL_H
+extern std::vector<Monster*> monsters; // 用来存储怪物的数组
+extern std::vector<Fan*> fans;
+extern std::vector<Bottle*> bottles;
+extern std::vector<Shit*> shits;
+
+#endif

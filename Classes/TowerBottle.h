@@ -1,37 +1,33 @@
-#ifndef __TOWER_BOTTLE_H__
-#define __TOWER_BOTTLE_H__
+// Bottle.h
+#ifndef __Bottle_H__
+#define __Bottle_H__
 
+#include "cocos2d.h"
+#include "Monster.h"
+#include "Bullet.h"
 #include "Tower.h"
+#include "ui/CocosGUI.h"
 
-using namespace cocos2d;
-using namespace cocos2d::ui;
-using namespace std;
-class Bottle : public Tower
-{
+class Bottle : public Tower {
 public:
-    Bottle();//构造函数，初始化成员变量
-    //virtual ~Bottle();//析构
-    
-    static Bottle* create(Vec2 position);//根据塔的类型来构建一个塔
+    static Bottle* create(const cocos2d::Vec2& position);
 
-    /*bool init() override; */
-    void attack();
+    // 攻击相关逻辑
+    void update(float dt, std::vector<Monster*> monsters);
+    bool isMonsterInRange(Monster* monster);
+    void checkForMonstersInRange(std::vector<Monster*> monsters);
+    void attack(Monster* target);
+
     void upgrade();
-    //void remove();
-    void setTowerImage(const std::string& imagePath);
-protected:
-    int level;
-    int attackPower;
-    float attackSpeed;
-    DrawNode* attackRangeIndicator;
-    // 其他属性和方法...
+    void remove() override;
+    void showAttackRange()override; // 显示攻击范围
+    void showUpgradeAndRemoveButtons()override; // 显示升级和移除按钮
+    void hideAttackRangeAndButtons(); // 移除
 
-    int towerType;
-    unordered_map<int, std::string> levelToImagePathMap =
-    {
-        {1,"Resources/Tower/Bottle/ID1_22.PNG"},
-        {2,"Resources/Tower/Bottle/ID1_15.PNG"},
-        {3,"Resources/Tower/Bottle/ID1_5.PNG"}
-    };
+private:
+    cocos2d::ui::Button *upgradeButton; // 升级按钮
+    cocos2d::ui::Button *removeButton;  // 移除按钮
+    Sprite* attackRange_;
 };
-#endif
+
+#endif // __Bottle_H__

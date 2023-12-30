@@ -23,6 +23,7 @@ public:
     
     // ¹ºÂòÅÚËşÏûºÄ½ğ±Ò
     bool purchaseTower(int cost);
+
     CREATE_FUNC(GoldCoin);
 
 private:

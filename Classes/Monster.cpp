@@ -1,4 +1,7 @@
-#include "Global.h"
+#include<Monster.h>
+#include<Global.h>
+#include "ui/CocosGUI.h"
+#include "SimpleAudioEngine.h"
 using namespace cocos2d;
 USING_NS_CC;
 
@@ -49,15 +52,15 @@ bool Monster::init() {
     return true;
 }
 
-void Monster::moveOnPath(const std::vector<Vec2>& path) {
+void Monster::moveOnPath(const std::vector<cocos2d::Vec2>& path) {
     if (path.empty()) return;
 
     // 创建动作序列
     Vector<FiniteTimeAction*> actions;
 
     for (size_t i = 1; i < path.size(); ++i) {
-        // 计算当前点到下一个点的移动时间，这里假设怪物的速度是固定的
-        float moveDuration = 0.4f; // 每段路径移动所需的时间，您可以根据怪物的速度进行调整
+        // 每段路径移动所需的时间，您可以根据怪物的速度进行调整
+        float moveDuration = path[i].length() / speed;
 
         // 创建移动到下一个点的动作
         auto moveAction = MoveTo::create(moveDuration, path[i]);
@@ -66,8 +69,9 @@ void Monster::moveOnPath(const std::vector<Vec2>& path) {
     // 添加一个回调函数，当移动完成时调用
     auto callbackAction = cocos2d::CallFunc::create([this]() {
 
-        globalCarrot->decreaseHealth(); // 减少萝卜的血量
-
+        if (this->_hitPoints > 0)
+            globalCarrot->decreaseHealth();// 减少萝卜的血量
+        removeFromMonstersArray(this);
         this->removeFromParent(); // 移除怪物
         // 还可以在这里添加其他代码，例如更新游戏状态
         });
@@ -77,14 +81,17 @@ void Monster::moveOnPath(const std::vector<Vec2>& path) {
     auto sequence = Sequence::create(actions);
 
     // 运行动作
-    this->runAction(sequence);
+    runAction(sequence);
 }
 
 void Monster::getAttacked(int damage) {
+    //updateHPLabel();
+    if (!isAlive) return; // 如果怪物已经死亡，直接返回
+
     _hitPoints -= damage;
-    updateHPLabel();
 
     if (_hitPoints <= 0) {
+        _hitPoints = 0;
         die();
     }
     else {
@@ -97,14 +104,29 @@ void Monster::showHitEffect() {
 }
 
 void Monster::dropCoins() {
-    // 实现金币掉落的逻辑
+    // 掉落50金币
+    goldCoin->earnGold(50);
 }
 
+/*
 void Monster::updateHPLabel() {
     _hpLabel->setString(std::to_string(_hitPoints));
 }
+*/
+
+void Monster::removeFromMonstersArray(Monster* monster)
+{
+    auto iter = std::find(monsters.begin(), monsters.end(), monster);
+    if (iter != monsters.end())
+    {
+        monsters.erase(iter);
+    }
+}
 
 void Monster::die() {
+    isAlive = false;
     dropCoins();
-    this->removeFromParent();
+    removeFromMonstersArray(this);
+    this->setVisible(false);
+   // this->removeFromParent();
 }

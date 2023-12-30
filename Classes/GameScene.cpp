@@ -1,13 +1,10 @@
-#include "GameScene.h"
 #include "SimpleAudioEngine.h"
 #include <string.h>
-#include"carrot.h"
-#include"PickTower.h"
-#include"Level1.h"
-#include"Global.h"
-#include "ui/CocosGUI.h"
-#include"GoldCoin.h"
+#include "Global.h"
+#include "GameScene.h"
+#include "GoldCoin.h"
 #include "SelectScene.h"
+#include "Level1.h"
 using namespace cocos2d;
 using namespace cocos2d::ui;
 
@@ -41,22 +38,23 @@ bool GameScene::init()
     auto gameover = Sprite::create("GameScene/gameover.PNG");
     gameover->setPosition(Vec2(visibleSize.width / 2 - 80, visibleSize.height - 33));
     this->addChild(gameover);
-    //显示金币数量
-    // 创建 GoldCoin 对象
-    GoldCoin* goldCoin = GoldCoin::create();
 
-    // 初始化 GoldCoin 对象
+    /* 显示金币数量 */
+    // 创建 GoldCoin 对象
+    goldCoin = GoldCoin::create();
+
     if (goldCoin && goldCoin->init())
     {
         // 将 GoldCoin 对象添加到场景中
         this->addChild(goldCoin);
 
         // 假设当前金币数量为 500
-        int currentGold = 300;
+        int currentGold = 500;
 
         // 更新金币数量显示
         goldCoin->updateGoldValue(currentGold);
     }
+
     /* 倍速按钮 */
     auto speedButton = Button::create("GameScene/speed_button.PNG");
     speedButton->setPosition(Vec2(visibleSize.width / 2 + 150, visibleSize.height - 38));
@@ -74,7 +72,7 @@ bool GameScene::init()
             std::string buttonImage = isDoubleSpeed ? "GameScene/speed_button_selected.PNG" : "GameScene/speed_button.PNG";
             speedButton->loadTextureNormal(buttonImage);
         }
-        });
+        }); 
 
     /* 暂停按钮 */
     auto pauseButton = Button::create("GameScene/pause_button.PNG");
@@ -83,7 +81,7 @@ bool GameScene::init()
     pauseButton->addTouchEventListener([=](Ref* sender, Widget::TouchEventType type) {
         if (type == Widget::TouchEventType::ENDED) {
             // 切换暂停状态
-            isGamePaused = !isGamePaused;
+            isGamePaused = !isGamePaused; 
             if (isGamePaused) {
                 Director::getInstance()->pause(); // 暂停游戏
                 // 切换到恢复图标
@@ -96,14 +94,9 @@ bool GameScene::init()
             }
         }
         });
-
     /* 选项按钮 */
     GameScene::options();
 
-    /* 倒计时动画 */
-    GameScene::createCountdownAnimation();
-
-  
     return true;
 }
 
@@ -122,7 +115,7 @@ void GameScene::options()
             /* 点击后出现提示框 */
             // 类蒙版层
             maskLayer = LayerColor::create(Color4B(0, 0, 0, 150));
-            this->addChild(maskLayer, 6);
+            this->getParent()->addChild(maskLayer, 6);
 
             // 创建提示框
             auto options = ImageView::create("GameScene/options.png");
@@ -136,6 +129,7 @@ void GameScene::options()
             options->addChild(restartButton);
             restartButton->addClickEventListener([=](Ref*) {
                 Director::getInstance()->resume();
+                Director::getInstance()->getScheduler()->setTimeScale(1);
 
                 // 重新开始游戏
                 auto maskLayer = LayerColor::create(Color4B(0, 0, 0, 0));  // 透明的遮罩层
@@ -145,7 +139,7 @@ void GameScene::options()
 
                 auto moveUp = MoveTo::create(duration, Vec2(0, targetY));
                 auto callback = CallFunc::create([]() {
-                    Director::getInstance()->replaceScene(TransitionFade::create(0.5f, GameScene::create(), Color3B::BLACK)); // 切换到新场景
+                    Director::getInstance()->replaceScene(TransitionFade::create(0.5f, Level1Scene::create(), Color3B::BLACK)); // 切换到新场景
                     });
                 auto sequence = Sequence::create(moveUp, callback, nullptr);
                 maskLayer->runAction(sequence);
@@ -157,6 +151,7 @@ void GameScene::options()
             options->addChild(returnButton);
             returnButton->addClickEventListener([=](Ref*) {
                 Director::getInstance()->resume();
+                Director::getInstance()->getScheduler()->setTimeScale(1);
 
                 // 返回选择界面
                 auto maskLayer = LayerColor::create(Color4B(0, 0, 0, 0));  // 透明的遮罩层
@@ -209,7 +204,7 @@ void GameScene::createCountdownAnimation()
     auto visibleSize = Director::getInstance()->getVisibleSize();
     // 创建类内蒙版层
     maskLayer = LayerColor::create(Color4B(0, 0, 0, 150));
-    this->addChild(maskLayer, 5); // 确保蒙版层的层级高于其他元素
+    this->getParent()->addChild(maskLayer, 5); // 确保蒙版层的层级高于其他元素
 
     // 确保用户不能点击倒计时后面的元素，可以通过添加一个监听器到暂停菜单层来吞噬所有点击事件
     auto listener = EventListenerTouchOneByOne::create();
@@ -251,9 +246,8 @@ void GameScene::createCountdownAnimation()
             // 倒计时结束后
             maskLayer->removeFromParent();
         }
-
+      
         }, this, 1.0f, false, "countdown");
-  
 }
 
 /* -------------------- 对地图网格化实现 ---------------------- */
@@ -264,26 +258,6 @@ bool GameMap::init()
     }
     setupGrid(); // 设置网格
 
-    // 初始化路径
-    addPathPoint({ 1,5 });
-    addPathPoint({ 1,4 });
-    addPathPoint({ 1,3 });
-    addPathPoint({ 1,2 });
-    addPathPoint({ 2,2 });
-    addPathPoint({ 3,2 });
-    addPathPoint({ 4,2 });
-    addPathPoint({ 4,3 });
-    addPathPoint({ 5,3 });
-    addPathPoint({ 6,3 });
-    addPathPoint({ 7,3 });
-    addPathPoint({ 7,2 });
-    addPathPoint({ 8,2 });
-    addPathPoint({ 9,2 });
-    addPathPoint({ 10,2 });
-    addPathPoint({ 10,3 });
-    addPathPoint({ 10,4 });
-    addPathPoint({ 10,5 });
-
     // 设置倒计时以匹配动画
     int countdownNumber = 3; // 从3开始倒计时
     auto scheduler = Director::getInstance()->getScheduler();
@@ -292,6 +266,7 @@ bool GameMap::init()
         if (countdownNumber <= 0) {
             // 打印框格
             GameMap::printStartSprite();
+
         }
         }, this, 1.0f, false, "countdown");
 
@@ -334,27 +309,30 @@ GameMap::Grid GameMap::pixelToGrid(float x, float y) {
 
 void GameMap::printStartSprite()
 {
-    // 清除旧的网格图像（如果有的话）
-    this->removeChildByName("PickTower");
-
-    std::vector<Vec2> positions; // 存储可以放置炮台的位置
-    // 计算可以放置炮台的位置
+    // 创建可以放置炮台的位置
     for (int y = 0; y < GRID_HEIGHT - 1; ++y) {
         for (int x = 0; x < GRID_WIDTH; ++x) {
             if (gridMap[y][x]) {
-                // 将位置添加到 positions 向量
-                positions.push_back(gridToPixel(x, y));
+                // 打印格子
+                auto StartSprite = ImageView::create("GameScene/StartSprite.png");
+                StartSprite->setPosition(gridToPixel(x, y));
+                this->addChild(StartSprite);
             }
         }
     }
 
-    // 创建并初始化 PickTower
+    // 创建一个闪烁动作
+    auto blinkAction = cocos2d::Blink::create(2, 4);
 
-    PickTower* pickTower = PickTower::create();
-    pickTower->setName("PickTower"); // 设置名字以便之后可以通过名字移除
-    if (pickTower) {
-        pickTower->setInitPositions(positions);
-        pickTower->init();
-        this->addChild(pickTower);
-    }
+    // 创建一个回调动作，在闪烁结束后移除图层
+    auto removeLayer = CallFunc::create([this]() {
+        this->removeFromParent();
+        });
+
+    // 创建一个动作序列，先闪烁，后移除
+    auto sequence = Sequence::create(blinkAction, removeLayer, nullptr);
+
+    // 运行动作序列
+    this->runAction(sequence);
+
 }
