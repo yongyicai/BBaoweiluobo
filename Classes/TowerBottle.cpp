@@ -38,39 +38,40 @@ Bottle* Bottle::create(Vec2 position)
 
 //bool Bottle::init()
 //{
-//    if (!Sprite::init())
-//    {
-//        return false;
-//    }
-//    // 初始化炮台
-//    return true;
-//}
-void Bottle::attack(cocos2d::Sprite* target)
-{
-    //Bullet* bullet = Bullet::create();
-    //if (bullet) {
-    //    // 设置子弹的起始位置为塔的位置
-    //    bullet->setPosition(this->getPosition());
-
-    //    // 计算瞄准目标的方向向量
-    //    cocos2d::Vec2 direction = target->getPosition() - this->getPosition();
-    //    direction.normalize();
-
-    //    // 计算子弹的速度向量
-    //    float bulletSpeed = 500.0f;  // 子弹速度
-    //    cocos2d::Vec2 velocity = direction * bulletSpeed;
-
-    //    // 设置子弹的速度
-    //    bullet->setVelocity(velocity);
-
-    //    // 将子弹添加到场景中
-    //    auto scene = cocos2d::Director::getInstance()->getRunningScene();
-    //    scene->addChild(bullet);
+  //  if (!Sprite::init())
+    //{
+      //  return false;
     //}
-    // 实现攻击逻辑
-    // 这可能涉及到创建一个 Projectile 类，并将其发射到目标
-    // 这里可能不应该直接new bullet，因为bullet应该是发射物的基类，对于每一个tower都应该有对应的发射物子类
-}
+    // 初始化炮台
+    //return true;
+//}
+void Bottle::attack()
+{
+   // Bullet* bullet = Bullet::create();
+    //if (bullet) {
+        // 设置子弹的起始位置为塔的位置
+     //    bullet->setPosition(this->getPosition());
+
+     //    // 计算瞄准目标的方向向量
+     //    cocos2d::Vec2 direction = target->getPosition() - this->getPosition();
+     //    direction.normalize();
+
+     //    // 计算子弹的速度向量
+     //    float bulletSpeed = 500.0f;  // 子弹速度
+     //    cocos2d::Vec2 velocity = direction * bulletSpeed;
+
+     //    // 设置子弹的速度
+     //    bullet->setVelocity(velocity);
+
+     //    // 将子弹添加到场景中
+     //    auto scene = cocos2d::Director::getInstance()->getRunningScene();
+     //    scene->addChild(bullet);
+     //}
+     // 实现攻击逻辑
+     // 这可能涉及到创建一个 Projectile 类，并将其发射到目标
+     // 这里可能不应该直接new bullet，因为bullet应该是发射物的基类，对于每一个tower都应该有对应的发射物子类
+    //}
+} 
 
 void Bottle::upgrade()
 {

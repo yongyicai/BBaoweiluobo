@@ -2,24 +2,25 @@
 #define __LEVEL1_SCENE_H__
 #include "Monster.h"
 #include "cocos2d.h"
+#include"PickTower.h"
 
 using namespace cocos2d;
 using namespace std;
 
-class Level1Scene: public Scene
+class Level1Scene : public Scene
 {
 public:
-    static Scene* createScene();
-
     struct Grid {
         int x, y;
     };
+    static Scene* createScene();
 
     virtual bool init();
     void click(GameMap* gamemap);
     void startNextWave(float dt);
     void spawnMonsters(int waveIndex);
     void endGame();
+   
 
     int currentWave;
     const int totalWaves = 15;
@@ -31,5 +32,7 @@ public:
     std::vector<Monster*> monsters; // 用来存储怪物的数组
 
     CREATE_FUNC(Level1Scene);
+private:
+    
 };
 #endif

@@ -2,8 +2,9 @@
 #include "SelectScene.h"
 #include "WelcomeScene.h"
 #include "HelpScene.h"
-#include <string.h>
+#include"Level1.h"
 #include "ui/CocosGUI.h"
+#include"cocos2d.h"
 #include "cocos/ui/UIImageView.h"
 
 USING_NS_CC;
@@ -295,9 +296,23 @@ void SelectScene::gotoGameScene(Ref* sender)
     float targetY = visibleSize.height; // 目标位置的Y坐标
 
     auto moveUp = MoveTo::create(duration, Vec2(0, targetY));
-    auto callback = CallFunc::create([]() {
-        Director::getInstance()->replaceScene(TransitionFade::create(0.5f, SelectScene::create(), Color3B::BLACK)); // 切换到新场景
-        });
-    auto sequence = Sequence::create(moveUp, callback, nullptr);
-    maskLayer->runAction(sequence);
+    ///////////////////////////////////////////////////
+    auto pageView = dynamic_cast<ui::PageView*>(this->getChildByTag(TAG_PAGE_VIEW));
+    if (int pageIndex = pageView->getCurrentPageIndex() == 0)
+    {
+        auto callback = CallFunc::create([]() {
+            Director::getInstance()->replaceScene(TransitionFade::create(0.5f, Level1Scene::create(), Color3B::BLACK)); // 切换到新场景
+            });
+        auto sequence = Sequence::create(moveUp, callback, nullptr);
+        maskLayer->runAction(sequence);
+    }
+    else
+    {
+        auto callback = CallFunc::create([]() {
+            Director::getInstance()->replaceScene(TransitionFade::create(0.5f, WelcomeScene::create(), Color3B::BLACK)); // 切换到新场景
+            });
+        auto sequence = Sequence::create(moveUp, callback, nullptr);
+        maskLayer->runAction(sequence);
+    }
+    
 }

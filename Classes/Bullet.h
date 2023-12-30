@@ -8,7 +8,6 @@ class Bullet : public cocos2d::Sprite
 {
 public:
     Bullet();
-    virtual ~Bullet();
 
     static Bullet* create(const cocos2d::Vec2& position, const cocos2d::Vec2& direction);
 

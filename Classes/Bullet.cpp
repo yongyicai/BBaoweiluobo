@@ -1,4 +1,5 @@
 #include "BottleBullet.h"
+#include"Bullet.h"
 
 Bullet::Bullet() : damage(0)
 {

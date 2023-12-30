@@ -1,6 +1,5 @@
 #include "Global.h"
-using namespace cocos2d;
-using namespace cocos2d::ui;
+
 USING_NS_CC;
 
 bool Carrot::init() {
@@ -11,15 +10,19 @@ bool Carrot::init() {
     health = 10; // 假设萝卜最大血量为10
     healthTextures = { "myCarrot/HP_MAX.PNG","myCarrot/HP_9.PNG","myCarrot/HP_7-8.PNG","myCarrot/HP_5-6.PNG","myCarrot/HP_4.PNG","myCarrot/HP_3.PNG","myCarrot/HP_2.PNG","myCarrot/HP_1.PNG" };
 
-    setupCarrot(Vec2::ZERO);
-  //  setupBloodBar();
-    setupSwingAction();
-
-    updateAppearance(); // 根据初始血量更新外观
+    // 延迟3秒后创建萝卜
+    auto delay = DelayTime::create(3.0f);
+    auto createCarrot = CallFunc::create([this]() {
+        setupCarrot(Vec2::ZERO);
+        // setupBloodBar();
+        setupSwingAction();
+        updateAppearance(); // 根据初始血量更新外观
+        });
+    auto sequence = Sequence::create(delay, createCarrot, nullptr);
+    runAction(sequence);
 
     return true;
 }
-
 void Carrot::setupCarrot(const Vec2& position) {
     aCarrot = Sprite::create("myCarrot/HP_MAX.PNG");
     aCarrot->setPosition(position);
@@ -60,11 +63,15 @@ void Carrot::decreaseHealth() {
     if (health < 0) health = 0; // 防止血量变成负数
 
     updateAppearance();
+
+    if (health <= 0) {
+        globalCarrot = nullptr;
+    }
 }
 
 void Carrot::updateAppearance() {
-    if (health  == 9) {
-        aCarrot->setTexture(healthTextures[1]);    
+    if (health == 9) {
+        aCarrot->setTexture(healthTextures[1]);
     }
     else if (health == 8 || health == 7) {
         aCarrot->setTexture(healthTextures[2]);
