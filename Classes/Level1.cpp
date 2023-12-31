@@ -11,7 +11,7 @@
 #include "Carrot.h"
 #include "PickTower.h"
 #include "GoldCoin.h"
-#include "TowerBottle.h"
+#include "Bottle.h"
 #include "Fan.h"
 #include "Shit.h"
 using namespace cocos2d;
@@ -37,7 +37,7 @@ bool Level1Scene::init()
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
     /* 设置背景 */
-    auto bg = Sprite::create("Level_1/Level_1_1_bg.png");
+    auto bg = Sprite::create("Level/Level1_bg.png");
     bg->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
     this->addChild(bg);
 
@@ -81,7 +81,7 @@ bool Level1Scene::init()
     auto delay = DelayTime::create(3.0f);
     auto createCarrot = CallFunc::create([this]() {
         /* 设置起点 */
-        auto startPoint = Sprite::create("Level_1/startPoint.PNG");
+        auto startPoint = Sprite::create("Level/startPoint.PNG");
         startPoint->setPosition(path[0]);
         this->addChild(startPoint);
         });
@@ -114,8 +114,6 @@ bool Level1Scene::init()
     waveLabel->setColor(Color3B::WHITE); // 设置颜色为白色
     this->addChild(waveLabel);
 
- 
-
     /* 倒计时动画 */
     gamescene->createCountdownAnimation();
 
@@ -139,6 +137,7 @@ void Level1Scene::startNextWave(float dt) {
     if (currentWave >= totalWaves) {
         // 所有波次完成，游戏结束
         unschedule(CC_SCHEDULE_SELECTOR(Level1Scene::startNextWave));
+        isLevel1Finish = true;
         endGame();
         return;
     }
@@ -171,6 +170,17 @@ void Level1Scene::spawnMonsters(int waveIndex) {
                 monster->cleanup();
                 endGame();
             }
+            // 出现特效
+            auto appear = cocos2d::Sprite::create("Monster/appear.PNG");
+            appear->setPosition(path.front());
+            this->addChild(appear);
+
+            // 设置一个动作来移除出现特效
+            auto fadeOut = cocos2d::FadeOut::create(0.5f); // 持续时间可以根据需要调整
+            auto removeExplosion = cocos2d::RemoveSelf::create();
+            auto sequence = cocos2d::Sequence::create(fadeOut, removeExplosion, nullptr);
+            appear->runAction(sequence);
+
             monster->setVisible(true);
             monster->moveOnPath(this->path);
             

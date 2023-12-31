@@ -1,7 +1,8 @@
 #include "PickTower.h"
-#include "TowerBottle.h"
+#include "Bottle.h"
 #include "cocos2d.h"
 #include "Level1.h"
+#include "Level2.h"
 #include "GoldCoin.h"
 #include "Global.h"
 #include "Tower.h"
@@ -32,17 +33,20 @@ bool PickTower::initWithPositions(const std::vector<cocos2d::Vec2>& positions) {
     auto click = Sprite::create("GameScene/click.png");
     tower1Item = Sprite::create("Tower/Bottle/CanClick1.PNG"); // 塔1的图标
     tower2Item = Sprite::create("Tower/Fan/CanClick1.PNG");    // 塔2的图标
+    tower3Item = Sprite::create("Tower/Shit/CanClick1.PNG");    // 塔3的图标
     click->setPosition(Director::getInstance()->getVisibleOrigin() / 2); // 点击闪烁
     // 添加到menu
     menu->addChild(click);
     menu->addChild(tower1Item);
     menu->addChild(tower2Item);
+    menu->addChild(tower3Item);
 
     menu->setVisible(false);
     this->addChild(menu);
 
-    tower1Item->setPosition(Vec2(-50, 80));
-    tower2Item->setPosition(Vec2(50, 80));
+    tower1Item->setPosition(Vec2(-80, 80));
+    tower2Item->setPosition(Vec2(0, 80));
+    tower3Item->setPosition(Vec2(80, 80));
 
     // 添加点击位置的监听器
     auto listener = EventListenerTouchOneByOne::create();
@@ -75,11 +79,8 @@ bool PickTower::initWithPositions(const std::vector<cocos2d::Vec2>& positions) {
         Vec2 localLocation = tower2Item->getParent()->convertToNodeSpace(touchLocation);
 
         if (tower2Item->getBoundingBox().containsPoint(localLocation)) {
-            auto base = Sprite::create("Tower/Bottle/ID1_11.PNG");
-            base->setPosition(selectedPosition);
-            this->addChild(base);
 
-            //createTowerFan(selectedPosition);
+            createTowerFan(selectedPosition);
             goldCoin->purchaseTower(160);
 
             menu->setVisible(false); // 隐藏菜单
@@ -88,6 +89,25 @@ bool PickTower::initWithPositions(const std::vector<cocos2d::Vec2>& positions) {
         return false;
     };
     _eventDispatcher->addEventListenerWithSceneGraphPriority(createTowerFanListener, tower2Item);
+
+    // 为每个炮塔选项添加触摸事件监听器
+    auto createTowerShitListener = EventListenerTouchOneByOne::create();
+    createTowerShitListener->setSwallowTouches(true); // 吞噬触摸事件
+    createTowerShitListener->onTouchBegan = [this](Touch* touch, Event* event) {
+        Vec2 touchLocation = touch->getLocation();
+        Vec2 localLocation = tower3Item->getParent()->convertToNodeSpace(touchLocation);
+
+        if (tower3Item->getBoundingBox().containsPoint(localLocation)) {
+
+            createTowerShit(selectedPosition);
+            goldCoin->purchaseTower(120);
+
+            menu->setVisible(false); // 隐藏菜单
+            return true;
+        }
+        return false;
+    };
+    _eventDispatcher->addEventListenerWithSceneGraphPriority(createTowerShitListener, tower3Item);
 
 
     return true;
@@ -118,22 +138,24 @@ void PickTower::showMenuAtPosition(const cocos2d::Vec2& position) {
 
 // 创建 TowerBottle 炮塔并添加触摸事件监听器
 void PickTower::createTowerBottle(const cocos2d::Vec2& position) {
-    auto base = Sprite::create("Tower/Bottle/ID1_11.PNG");
-    base->setPosition(selectedPosition);
-    this->addChild(base);
-    auto tower = Bottle::create(position);
-    this->addChild(tower);
-    addTowerTouchListener(tower);
+    auto towerBottle = Bottle::create(position);
+    this->addChild(towerBottle);
+    addTowerTouchListener(towerBottle);
 }
 
 // 创建 TowerFan 炮塔并添加触摸事件监听器
-/*
 void PickTower::createTowerFan(const cocos2d::Vec2& position) {
-    auto tower = TowerFan::create(position);
-    this->addChild(tower);
-    addTowerTouchListener(tower);
+    auto towerFan = Fan::create(position);
+    this->addChild(towerFan);
+    addTowerTouchListener(towerFan);
 }
-*/
+
+// 创建 TowerShit 炮塔并添加触摸事件监听器
+void PickTower::createTowerShit(const cocos2d::Vec2& position) {
+    auto towerShit = Shit::create(position);
+    this->addChild(towerShit);
+    addTowerTouchListener(towerShit);
+}
 
 // 为炮塔添加触摸事件监听器的通用方法
 void PickTower::addTowerTouchListener(Tower* tower) {
@@ -150,7 +172,6 @@ void PickTower::addTowerTouchListener(Tower* tower) {
     _eventDispatcher->addEventListenerWithSceneGraphPriority(towerListener, tower);
 
 }
-
 
 bool PickTower::isPointNearLocation(const cocos2d::Vec2& point, const cocos2d::Vec2& location) {
     // 简单的距离检测，可以根据需要调整阈值

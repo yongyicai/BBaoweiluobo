@@ -1,15 +1,15 @@
-#ifndef __FAN_H__
-#define __FAN_H__
+#ifndef __Bottle_H__
+#define __Bottle_H__
 
 #include "cocos2d.h"
 #include "Monster.h"
-#include "FanBullet.h"
+#include "BottleBullet.h"
 #include "Tower.h"
 #include "ui/CocosGUI.h"
 
-class Fan : public Tower {
+class Bottle : public Tower {
 public:
-    static Fan* create(const cocos2d::Vec2& position);
+    static Bottle* create(const cocos2d::Vec2& position);
 
     // ¹¥»÷Ïà¹ØÂß¼­
     void update(float dt, std::vector<Monster*> monsters);
@@ -20,11 +20,8 @@ public:
     void upgrade();
     void remove() override;
 
-
 private:
-    cocos2d::Sprite* topSprite;
-    cocos2d::Sprite* bottomSprite;
-
-    FanBullet* fanbullet;
+    Bullet* bullet;
 };
+
 #endif

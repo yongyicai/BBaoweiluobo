@@ -1,10 +1,6 @@
-// Bullet.cpp
 #include "FanBullet.h"
 
 USING_NS_CC;
-
-
-
 
 FanBullet* FanBullet::createWithTarget(Monster* target, const std::string& filename, float speed, int damage) {
     FanBullet* fanbullet = new (std::nothrow) FanBullet();
@@ -30,23 +26,31 @@ void FanBullet::moveToTarget() {
         return;
     }
 
-    float distance = this->getPosition().getDistance(target->getPosition());
-    
+    // 创建定时器，不断更新子弹的飞行方向
+    auto updateFunc = [this](float dt) {
+        if (!this->getParent()) {
+            this->unschedule("bullet_update");
+            return;
+        }
+        // 计算新的方向和位置
+        Vec2 direction = target->getPosition() - this->getPosition();
+        float distance = direction.length();
+        // 子弹旋转
+        this->setRotation(this->getRotation() + 5.0f); // 每帧旋转5度，可以调整旋转速度
+        if (distance < 10.0f) { // 如果子弹接近目标
+            target->getAttacked(damage); // 对怪物造成伤害
+            this->stopAllActions();
+            this->removeFromParent();
+        }
+        else if (target) {
+            // 更新子弹的方向
+            direction.normalize();
+            this->setPosition(this->getPosition() + direction * speed * dt);
+        }
+    };
 
-    float duration = distance / speed; // 计算移动所需的时间
-
-    auto moveAction = MoveTo::create(duration, target->getPosition()); // 创建直线移动动作
-    auto rotateAction = RotateBy::create(duration, 360.0f); // 旋转一周，时间和角度可以根据实际需求调整
-
-    auto combinedAction = Spawn::create(moveAction, rotateAction, nullptr);
-
-    auto sequence = Sequence::create(combinedAction, CallFunc::create([this]() {
-        this->removeFromParent();
-        }), nullptr);
-
-    this->runAction(sequence);
-
-    
+    // 每帧调用 updateFunc 来更新子弹位置
+    this->schedule(updateFunc, "bullet_update");
 }
 
 //void Bullet::targetDied() {

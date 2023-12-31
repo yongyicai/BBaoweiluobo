@@ -60,11 +60,58 @@ void Tower::remove()
     // 移除炮台
     this->removeFromParentAndCleanup(true);
 }
+
 void Tower::showAttackRange() {
+    attackRange_ = Sprite::create("GameScene/Tower/AttackRange.PNG");
+    attackRange_->setPosition(this->getPosition());
+    this->getParent()->addChild(attackRange_);
 
-    // 显示攻击范围
-} 
+}
 void Tower::showUpgradeAndRemoveButtons() {
+    // 创建升级按钮
+    upgradeButton = cocos2d::ui::Button::create("GameScene/Tower/Btn_CanUpLevel.png");
+    upgradeButton->setPosition(Vec2(this->getPosition().x, this->getPosition().y + 85)); // 设置位置
+    upgradeButton->addTouchEventListener([this](Ref* sender, cocos2d::ui::Widget::TouchEventType type) {
+        if (type == cocos2d::ui::Widget::TouchEventType::ENDED) {
+            this->upgrade();
+        }
+        });
+    this->getParent()->addChild(upgradeButton);
 
-    // 显示升级和移除按钮
+    // 创建移除按钮
+    removeButton = cocos2d::ui::Button::create("GameScene/Tower/Btn_SellTower.png");
+    removeButton->setPosition(Vec2(this->getPosition().x, this->getPosition().y - 85)); // 设置位置
+    removeButton->addTouchEventListener([this](Ref* sender, cocos2d::ui::Widget::TouchEventType type) {
+        if (type == cocos2d::ui::Widget::TouchEventType::ENDED) {
+            this->remove();
+        }
+        });
+    this->getParent()->addChild(removeButton);
+
+    // 添加一个全局触摸监听器
+    auto globalListener = EventListenerTouchOneByOne::create();
+    globalListener->setSwallowTouches(false); // 不吞噬触摸事件
+    globalListener->onTouchBegan = [this](Touch* touch, Event* event) {
+        Vec2 touchLocation = touch->getLocation();
+
+        // 检测触摸点是否在炮台、升级按钮或移除按钮上
+        if (!this->getBoundingBox().containsPoint(touchLocation) &&
+            !this->upgradeButton->getBoundingBox().containsPoint(touchLocation) &&
+            !this->removeButton->getBoundingBox().containsPoint(touchLocation)) {
+            // 点击在炮台和按钮之外，隐藏攻击范围和按钮
+            this->hideAttackRangeAndButtons();
+            return true;
+        }
+        return false; // 允许事件继续传递
+    };
+    _eventDispatcher->addEventListenerWithSceneGraphPriority(globalListener, this);
+}
+
+void Tower::hideAttackRangeAndButtons() {
+    // 隐藏攻击范围指示
+    if (attackRange) attackRange_->setVisible(false);
+
+    // 隐藏升级和移除按钮
+    if (upgradeButton) upgradeButton->setVisible(false);
+    if (removeButton) removeButton->setVisible(false);
 }

@@ -3,25 +3,26 @@
 
 #include "cocos2d.h"
 #include "Monster.h"
-#include "Bullet.h"
+#include "shitBullet.h"
+#include "Tower.h"
+#include "ui/CocosGUI.h"
 
-class Shit : public cocos2d::Sprite {
+class Shit : public Tower {
 public:
-    int level = 1;
     static Shit* create(const cocos2d::Vec2& position);
+
     void upgrade();
+    void remove() override;
+
+    // ¹¥»÷Ïà¹ØÂß¼­
     void update(float dt, std::vector<Monster*> monsters);
     bool isMonsterInRange(Monster* monster);
+    void checkForMonstersInRange(std::vector<Monster*> monsters);
     void attack(Monster* target);
 
 private:
-    std::vector<Monster*> monstersInRange;
-    float attackRange;
-    float attackSpeed;
-    float timeSinceLastAttack;
 
-    void checkForMonstersInRange(std::vector<Monster*> monsters);
+    ShitBullet* shitbullet;
 };
-
 #endif 
 

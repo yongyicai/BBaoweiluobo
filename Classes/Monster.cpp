@@ -10,13 +10,13 @@ Monster* Monster::createWithType(int monsterType) {
     // 根据怪物类型设置不同的生命值
     switch (monsterType) {
         case 1:
-            hitPoints = 100;
-            break;
-        case 2:
             hitPoints = 150;
             break;
-        case 3:
+        case 2:
             hitPoints = 200;
+            break;
+        case 3:
+            hitPoints = 300;
             break;
         default:
             break;
@@ -104,8 +104,8 @@ void Monster::showHitEffect() {
 }
 
 void Monster::dropCoins() {
-    // 掉落50金币
-    goldCoin->earnGold(50);
+    // 掉落30金币
+    goldCoin->earnGold(30);
 }
 
 /*
@@ -124,9 +124,19 @@ void Monster::removeFromMonstersArray(Monster* monster)
 }
 
 void Monster::die() {
-    isAlive = false;
+    // 爆炸特效
+    auto explosion = cocos2d::Sprite::create("Monster/explosion.PNG");
+    explosion->setPosition(this->getPosition());
+    this->getParent()->addChild(explosion);
+
+    // 设置一个动作来移除爆炸特效
+    auto fadeOut = cocos2d::FadeOut::create(0.5f); // 持续时间可以根据需要调整
+    auto removeExplosion = cocos2d::RemoveSelf::create();
+    auto sequence = cocos2d::Sequence::create(fadeOut, removeExplosion, nullptr);
+    explosion->runAction(sequence);
+
     dropCoins();
     removeFromMonstersArray(this);
     this->setVisible(false);
-   // this->removeFromParent();
+    //this->removeFromParent();
 }

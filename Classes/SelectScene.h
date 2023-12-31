@@ -26,12 +26,6 @@ enum LevelTags {
 
 class SelectScene : public cocos2d::Scene
 {
-private:
-    // 添加是否锁定
-    bool isLock = false; // 添加关卡是否完成的接口
-
-    // 添加是否完成关卡
-    bool isFinish = false; // 添加关卡是否完成的接口
 public:
     static cocos2d::Scene* createScene();
 
@@ -45,7 +39,4 @@ public:
 
     CREATE_FUNC(SelectScene);
 };
-
-
-
 #endif

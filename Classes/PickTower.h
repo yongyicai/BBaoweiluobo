@@ -2,7 +2,7 @@
 #define __PICKTOWER_H__
 #include "Level1.h"
 #include "cocos2d.h"
-#include "TowerBottle.h"
+#include "Bottle.h"
 #include "Tower.h"// 引入炮塔相关的头文件
 
 class PickTower : public cocos2d::Node {
@@ -12,6 +12,7 @@ public:
     bool onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event);
     void showMenuAtPosition(const cocos2d::Vec2& position);
     void createTowerBottle(const cocos2d::Vec2& position);
+    void createTowerShit(const cocos2d::Vec2& position);
     void createTowerFan(const cocos2d::Vec2& position);
     void addTowerTouchListener(Tower* tower);
     bool isPointNearLocation(const cocos2d::Vec2& point, const cocos2d::Vec2& location);
@@ -19,6 +20,7 @@ public:
 private:
     Sprite* tower1Item;
     Sprite* tower2Item;
+    Sprite* tower3Item;
     cocos2d::Node* menu;                  // 选择菜单
     cocos2d::Vec2 selectedPosition;       // 当前选中的位置
     std::vector<cocos2d::Vec2> Positions; // 可点击的位置

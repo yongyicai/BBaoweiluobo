@@ -1,4 +1,3 @@
-// Bullet.cpp
 #include "ShitBullet.h"
 
 USING_NS_CC;
@@ -27,35 +26,28 @@ void ShitBullet::moveToTarget() {
         return;
     }
 
-    // 计算移动到目标的时间
-    float distance = this->getPosition().distance(target->getPosition());
-    float duration = distance / speed;
-
-
-    // 创建移动动作
-    auto moveAction = MoveTo::create(duration, target->getPosition());
-    auto checkTargetValid = CallFunc::create([this]() {
-        if (!target || target->getHitPoints() <= 0) {
+    // 创建定时器，不断更新子弹的飞行方向
+    auto updateFunc = [this](float dt) {
+        if (!this->getParent()) {
+            this->unschedule("bullet_update");
+            return;
+        }
+        // 计算新的方向和位置
+        Vec2 direction = target->getPosition() - this->getPosition();
+        float distance = direction.length();
+        // 子弹旋转
+        if (distance < 10.0f) { // 如果子弹接近目标
+            target->getAttacked(damage); // 对怪物造成伤害
             this->stopAllActions();
             this->removeFromParent();
         }
-        });
-    auto removeSelf = RemoveSelf::create();
-    auto damageCallback = CallFunc::create([this]() {
-        if (target && target->getHitPoints() > 0) {
-            target->takeHalfspeed();
-            target->beSloweddown();
-            target->getAttacked(damage);
+        else if (target) {
+            // 更新子弹的方向
+            direction.normalize();
+            this->setPosition(this->getPosition() + direction * speed * dt);
         }
-        });
+    };
 
-
-    // 运行动作序列
-    auto sequence = Sequence::create(moveAction, checkTargetValid, damageCallback, removeSelf, nullptr);
-    this->runAction(sequence);
-}
-
-void ShitBullet::targetDied() {
-    target = nullptr; // 将目标设置为 nullptr
-    // 或者采取其他适当的行动
+    // 每帧调用 updateFunc 来更新子弹位置
+    this->schedule(updateFunc, "bullet_update");
 }

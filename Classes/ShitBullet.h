@@ -1,5 +1,3 @@
-#pragma once
-
 #ifndef __SHIT_BULLET_H__
 #define __SHIT_BULLET_H__
 
@@ -12,7 +10,7 @@ public:
     static ShitBullet* createWithTarget(Monster* target, const std::string& filename, float speed, int damage);
     void initOptions(Monster* target, float speed, int damage);
     void moveToTarget();
-    void targetDied();
+    //void targetDied();
 private:
     Monster* target;
     float speed;

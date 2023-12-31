@@ -1,59 +1,64 @@
+// Bullet.cpp
 #include "BottleBullet.h"
 
-BottleBullet::BottleBullet() : damage(0),speed(10)
-{
-    // 初始化代码
-}
+USING_NS_CC;
 
-//BottleBullet::~Bullet()
-//{
-//    // 清理代码
-//}
-
-BottleBullet* BottleBullet::create(const cocos2d::Vec2& position, const cocos2d::Vec2& direction)
-{
-    //bottle&& bottle->levelToImagePathMap.count(bottle->level) > 0 && bottle->initWithFile())
-    BottleBullet* bottlebullet = new (std::nothrow) BottleBullet();
-    if (bottlebullet && bottlebullet->levelToImagePathMap.count(bottlebullet->level) > 0&& bottlebullet->initWithFile(bottlebullet->levelToImagePathMap.at(bottlebullet->level)))
-    {
-        bottlebullet->autorelease();
-        bottlebullet->setPosition(position);
-        bottlebullet->direction = direction;
-        // 根据需要进行进一步的初始化
-        return bottlebullet;
+Bullet* Bullet::createWithTarget(Monster* target, const std::string& filename, float speed, int damage) {
+    Bullet* bullet = new (std::nothrow) Bullet();
+    if (bullet && bullet->initWithFile("Tower/Bottle/ID1_0.PNG")) {
+        bullet->autorelease();
+        bullet->initOptions(target, speed, damage);
+        return bullet;
     }
-    CC_SAFE_DELETE(bottlebullet);
+    CC_SAFE_DELETE(bullet);
     return nullptr;
 }
 
-bool BottleBullet::init()
-{
-    if (!cocos2d::Sprite::init())
-    {
-        return false;
-    }
-    return true;
-}
-
-void BottleBullet::update(float delta)
-{
-    // 根据子弹的速度和方向更新子弹的位置
-    // 根据实际需求调整速度
-    cocos2d::Vec2 newPosition = getPosition() + (direction * speed * delta);
-    setPosition(newPosition);
-
-    // 检测子弹与怪物的碰撞，根据实际游戏逻辑处理
-    // ...
-
-    // 检测子弹是否超出游戏区域，如果是，则销毁子弹对象
-    cocos2d::Size visibleSize = cocos2d::Director::getInstance()->getVisibleSize();
-    if (newPosition.x < 0 || newPosition.x > visibleSize.width || newPosition.y < 0 || newPosition.y > visibleSize.height)
-    {
-        removeFromParentAndCleanup(true);
-    }
-}
-
-void BottleBullet::setDamage(int damage)
-{
+void Bullet::initOptions(Monster* target, float speed, int damage) {
+    this->target = target;
+    this->speed = speed;
     this->damage = damage;
+    this->moveToTarget();
+}
+
+void Bullet::moveToTarget() {
+    if (!target) {
+        this->removeFromParent();
+        return;
+    }
+
+    // 创建定时器，不断更新子弹的飞行方向
+    auto updateFunc = [this](float dt) {
+        if (target && this->getParent()) {
+            // 计算新的方向和位置
+            Vec2 direction = target->getPosition() - this->getPosition();
+            float distance = direction.length();
+            if (distance < 10.0f) { // 如果子弹接近目标
+                target->getAttacked(damage); // 对怪物造成伤害
+                this->stopAllActions();
+                this->removeFromParent();
+            }
+            else {
+                direction.normalize();
+                this->setPosition(this->getPosition() + direction * speed * dt);
+            }
+        }
+        else {
+            this->stopAllActions();
+            this->removeFromParent();
+        }
+    };
+
+    // 每帧调用 updateFunc 来更新子弹位置
+    this->schedule(updateFunc, "bullet_update");
+}
+
+void Bullet::destroy() {
+    // 停止所有动作
+    this->stopAllActions();
+
+    // 从父节点移除
+    if (this->getParent() != nullptr) {
+        this->removeFromParent();
+    }
 }

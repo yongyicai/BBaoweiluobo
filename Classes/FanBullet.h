@@ -1,5 +1,3 @@
-#pragma once
-// Bullet.h
 #ifndef __FAN_BULLET_H__
 #define __FAN_BULLET_H__
 

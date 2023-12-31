@@ -3,6 +3,8 @@
 #include "WelcomeScene.h"
 #include "HelpScene.h"
 #include"Level1.h"
+#include"Level2.h"
+#include"Global.h"
 #include "ui/CocosGUI.h"
 #include"cocos2d.h"
 #include "cocos/ui/UIImageView.h"
@@ -98,6 +100,8 @@ void SelectScene::scroll()
 
     int numLevels = 5; // 五张地图
 
+    Button*  startButton = ui::Button::create("SelectScene/stages_bg-hd_30.PNG", "SelectScene/stages_bg-hd_28.PNG"); // 创建按钮
+
     // 创建 PageView
     auto pageView = ui::PageView::create();
     pageView->setContentSize(visibleSize);
@@ -121,22 +125,17 @@ void SelectScene::scroll()
         layout->addChild(levelImage);
      
         // 添加是否锁定
-        if (isLock) {
+        if (i >= 2 || (i == 1 && !isLevel1Finish)) {
             // 创建锁的图案
             auto lock = ImageView::create("SelectScene/stages_bg-hd_31.PNG");
             lock->setTag(TAG_LOCK_IMAGE);
             lock->setPosition(Vec2(layout->getContentSize().width / 2 + 140, layout->getContentSize().height / 2 - 70));
             layout->addChild(lock);
-
-            // 创建“已锁定”按钮
-            auto lockButton = ImageView::create("SelectScene/stages_bg-hd_39.PNG");
-            lockButton->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2 - 235));
-            this->addChild(lockButton,2);
         }
 
         // 添加是否完成关卡
-        if (isFinish) {
-            // 创建锁的图案
+        if (i == 0 && isLevel1Finish || i == 1 && isLevel2Finish) {
+            // 创建完成的图案
             auto finish = ImageView::create("SelectScene/finish.png");
             finish->setTag(TAG_FINISH_IMAGE);
             finish->setPosition(Vec2(layout->getContentSize().width / 2 + 150, layout->getContentSize().height / 2 - 50));
@@ -160,7 +159,6 @@ void SelectScene::scroll()
         });
 
     // 创建开始游戏按钮
-    auto startButton = ui::Button::create("SelectScene/stages_bg-hd_30.PNG", "SelectScene/stages_bg-hd_28.PNG");
     startButton->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2 - 240)); // 按钮位置在页面底部
     startButton->setTag(TAG_START_BUTTON);
     // 点击按钮事件
@@ -170,13 +168,14 @@ void SelectScene::scroll()
             this->gotoGameScene(sender);
         }
         });
-    this->addChild(startButton);
+    this->addChild(startButton, 2);
 }
 
 /* 监听页面变化，更新关卡状态 */
 void SelectScene::updateLevelState(int pageIndex)
 {
     auto pageView = dynamic_cast<ui::PageView*>(this->getChildByTag(TAG_PAGE_VIEW));
+    int i = 0;
 
     /* 对地图的透明度进行更新 */
     for (auto& item : pageView->getChildren()) {
@@ -186,15 +185,16 @@ void SelectScene::updateLevelState(int pageIndex)
         levelImage->setOpacity(layout->getTag() == (TAG_LEVEL_1 + pageIndex) ? 255 : 50);
 
         // 锁的透明度变化
-        if (isLock) {
+        if (i >= 2 || (i == 1 && !isLevel1Finish)) {
             auto lock = dynamic_cast<ui::ImageView*>(layout->getChildByTag(TAG_LOCK_IMAGE));
             lock->setOpacity(layout->getTag() == (TAG_LEVEL_1 + pageIndex) ? 255 : 50);
         }
         // 完成标志的透明度变化
-        if (isFinish) {
+        if (i == 0 && isLevel1Finish || i == 1 && isLevel2Finish) {
             auto finish = dynamic_cast<ui::ImageView*>(layout->getChildByTag(TAG_FINISH_IMAGE));
             finish->setOpacity(layout->getTag() == (TAG_LEVEL_1 + pageIndex) ? 255 : 50);
         }
+        i++;
     }
 
     /* 对每一页的固定部件进行更新 */
@@ -301,18 +301,18 @@ void SelectScene::gotoGameScene(Ref* sender)
     if (int pageIndex = pageView->getCurrentPageIndex() == 0)
     {
         auto callback = CallFunc::create([]() {
-            Director::getInstance()->replaceScene(TransitionFade::create(0.5f, Level1Scene::create(), Color3B::BLACK)); // 切换到新场景
+            Director::getInstance()->replaceScene(TransitionFade::create(0.5f, Level1Scene::create(), Color3B::BLACK)); // 切换到第一关
             });
         auto sequence = Sequence::create(moveUp, callback, nullptr);
         maskLayer->runAction(sequence);
     }
-    else
+    else if(int pageIndex = pageView->getCurrentPageIndex() == 1 && isLevel1Finish)
     {
         auto callback = CallFunc::create([]() {
-            Director::getInstance()->replaceScene(TransitionFade::create(0.5f, WelcomeScene::create(), Color3B::BLACK)); // 切换到新场景
+            Director::getInstance()->replaceScene(TransitionFade::create(0.5f, Level2Scene::create(), Color3B::BLACK)); // 切换到第二关
             });
         auto sequence = Sequence::create(moveUp, callback, nullptr);
         maskLayer->runAction(sequence);
     }
-    
+
 }

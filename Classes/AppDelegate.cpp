@@ -1,11 +1,13 @@
 #include "AppDelegate.h"
+#include "audio/include/AudioEngine.h"
 #include "WelcomeScene.h"
 #include "Carrot.h"
 #include "GoldCoin.h"
 #include "Monster.h"
-#include "TowerBottle.h"
+#include "Bottle.h"
 #include "Fan.h"
 #include "Shit.h"
+using namespace cocos2d::experimental;
 
 // #define USE_AUDIO_ENGINE 1
 // #define USE_SIMPLE_AUDIO_ENGINE 1
@@ -35,9 +37,13 @@ std::vector<Monster*> monsters; // 用来存储怪物的数组
 std::vector<Fan*> fans;
 std::vector<Bottle*> bottles;
 std::vector<Shit*> shits;
+bool isLevel1Finish = false;
+bool isLevel2Finish = false;
 
 AppDelegate::AppDelegate()
 {
+    AudioEngine::preload("sound/backGround.ogg");
+    int AudioID = AudioEngine::play2d("sound/backGround.ogg");
 }
 
 AppDelegate::~AppDelegate()

@@ -1,35 +1,21 @@
-// Bullet.h
-#ifndef __BOTTLE_BULLET_H__
-#define __BOTTLE_BULLET_H__
+#ifndef __BULLET_H__
+#define __BULLET_H__
 
-#include "Bullet.h"
+#include "cocos2d.h"
+#include "Monster.h"
 
-class BottleBullet : public Bullet
-{
+class Bullet : public cocos2d::Sprite {
 public:
-    BottleBullet();
-    /*virtual ~BottleBullet();*/
-
-    static BottleBullet* create(const cocos2d::Vec2& position, const cocos2d::Vec2& direction);
-
-    virtual bool init() override;
-    virtual void update(float delta) override;
-
-    void setDamage(int damage);
+    static Bullet* createWithTarget(Monster* target, const std::string& filename, float speed, int damage);
+    void initOptions(Monster* target, float speed, int damage);
+    void moveToTarget();
+    void onHitMonster(Monster* monster);
+    void destroy();
 
 private:
+    Monster* target;
+    float speed;
     int damage;
-    int speed;
-    int level;
-    cocos2d::Vec2 direction;
-    std::unordered_map<int, std::string> levelToImagePathMap =
-    {
-        {1,"Resources/Tower/Bottle/ID1_22.PNG"},
-        {2,"Resources/Tower/Bottle/ID1_15.PNG"},
-        {3,"Resources/Tower/Bottle/ID1_5.PNG"}
-    };
 };
 
 #endif
-
-
