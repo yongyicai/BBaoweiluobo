@@ -1,0 +1,298 @@
+﻿  AppDelegate.cpp
+  BottleBullet.cpp
+  Carrot.cpp
+  Fan.cpp
+  FanBullet.cpp
+  GameScene.cpp
+  GoldCoin.cpp
+  HelpScene.cpp
+  Level1.cpp
+  Level2.cpp
+  Monster.cpp
+  PickTower.cpp
+  SelectScene.cpp
+  SettingScene.cpp
+  Shit.cpp
+  ShitBullet.cpp
+F:\myGame\Classes\Level1.cpp(72,23): warning C4018: “<”: 有符号/无符号不匹配
+F:\myGame\Classes\Level2.cpp(77,23): warning C4018: “<”: 有符号/无符号不匹配
+  Tower.cpp
+  Bottle.cpp
+  WelcomeScene.cpp
+  main.cpp
+    正在创建库 F:\myGame\proj.win32\Release.win32\myGame.lib 和对象 F:\myGame\proj.win32\Release.win32\myGame.exp
+  正在生成代码
+  Previous IPDB not found, fall back to full compilation.
+F:\myGame\Classes\SettingScene.cpp(56): warning C4715: “SettingScene::init”: 不是所有的控件路径都返回值
+F:\myGame\Classes\HelpScene.cpp(56): warning C4715: “HelpScene::init”: 不是所有的控件路径都返回值
+F:\myGame\Classes\WelcomeScene.cpp(156): warning C4715: “WelcomeScene::init”: 不是所有的控件路径都返回值
+  All 2346 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  已完成代码的生成
+  myGame.vcxproj -> F:\myGame\proj.win32\Release.win32\myGame.exe
+  正在执行自定义生成步骤
+  F:\myGame\Resources\fonts\arial.ttf -> F:\myGame\proj.win32\Release.win32\Resources\fonts\arial.ttf
+  F:\myGame\Resources\fonts\Marker Felt.ttf -> F:\myGame\proj.win32\Release.win32\Resources\fonts\Marker Felt.ttf
+  F:\myGame\Resources\GameScene\1.PNG -> F:\myGame\proj.win32\Release.win32\Resources\GameScene\1.PNG
+  F:\myGame\Resources\GameScene\2.PNG -> F:\myGame\proj.win32\Release.win32\Resources\GameScene\2.PNG
+  F:\myGame\Resources\GameScene\3.PNG -> F:\myGame\proj.win32\Release.win32\Resources\GameScene\3.PNG
+  F:\myGame\Resources\GameScene\again_normal.png -> F:\myGame\proj.win32\Release.win32\Resources\GameScene\again_normal.png
+  F:\myGame\Resources\GameScene\again_selected.png -> F:\myGame\proj.win32\Release.win32\Resources\GameScene\again_selected.png
+  F:\myGame\Resources\GameScene\cantBuild.png -> F:\myGame\proj.win32\Release.win32\Resources\GameScene\cantBuild.png
+  F:\myGame\Resources\GameScene\choice_button.PNG -> F:\myGame\proj.win32\Release.win32\Resources\GameScene\choice_button.PNG
+  F:\myGame\Resources\GameScene\choice_button_selected.PNG -> F:\myGame\proj.win32\Release.win32\Resources\GameScene\choice_button_selected.PNG
+  F:\myGame\Resources\GameScene\circle.PNG -> F:\myGame\proj.win32\Release.win32\Resources\GameScene\circle.PNG
+  F:\myGame\Resources\GameScene\circlebase.PNG -> F:\myGame\proj.win32\Release.win32\Resources\GameScene\circlebase.PNG
+  F:\myGame\Resources\GameScene\click.png -> F:\myGame\proj.win32\Release.win32\Resources\GameScene\click.png
+  F:\myGame\Resources\GameScene\gameover.PNG -> F:\myGame\proj.win32\Release.win32\Resources\GameScene\gameover.PNG
+  F:\myGame\Resources\GameScene\Grid.png -> F:\myGame\proj.win32\Release.win32\Resources\GameScene\Grid.png
+  F:\myGame\Resources\GameScene\lose.png -> F:\myGame\proj.win32\Release.win32\Resources\GameScene\lose.png
+  F:\myGame\Resources\GameScene\menu.PNG -> F:\myGame\proj.win32\Release.win32\Resources\GameScene\menu.PNG
+  F:\myGame\Resources\GameScene\options.png -> F:\myGame\proj.win32\Release.win32\Resources\GameScene\options.png
+  F:\myGame\Resources\GameScene\paused.png -> F:\myGame\proj.win32\Release.win32\Resources\GameScene\paused.png
+  F:\myGame\Resources\GameScene\pause_button.PNG -> F:\myGame\proj.win32\Release.win32\Resources\GameScene\pause_button.PNG
+  F:\myGame\Resources\GameScene\pause_button_selected.PNG -> F:\myGame\proj.win32\Release.win32\Resources\GameScene\pause_button_selected.PNG
+  F:\myGame\Resources\GameScene\pause_button_selected_light.PNG -> F:\myGame\proj.win32\Release.win32\Resources\GameScene\pause_button_selected_light.PNG
+  F:\myGame\Resources\GameScene\restart_normal.png -> F:\myGame\proj.win32\Release.win32\Resources\GameScene\restart_normal.png
+  F:\myGame\Resources\GameScene\restart_selected.png -> F:\myGame\proj.win32\Release.win32\Resources\GameScene\restart_selected.png
+  F:\myGame\Resources\GameScene\resume_normal.png -> F:\myGame\proj.win32\Release.win32\Resources\GameScene\resume_normal.png
+  F:\myGame\Resources\GameScene\resume_selected.png -> F:\myGame\proj.win32\Release.win32\Resources\GameScene\resume_selected.png
+  F:\myGame\Resources\GameScene\return_normal.png -> F:\myGame\proj.win32\Release.win32\Resources\GameScene\return_normal.png
+  F:\myGame\Resources\GameScene\return_selected.png -> F:\myGame\proj.win32\Release.win32\Resources\GameScene\return_selected.png
+  F:\myGame\Resources\GameScene\speed_button.PNG -> F:\myGame\proj.win32\Release.win32\Resources\GameScene\speed_button.PNG
+  F:\myGame\Resources\GameScene\speed_button_selected.PNG -> F:\myGame\proj.win32\Release.win32\Resources\GameScene\speed_button_selected.PNG
+  F:\myGame\Resources\GameScene\startPoint.PNG -> F:\myGame\proj.win32\Release.win32\Resources\GameScene\startPoint.PNG
+  F:\myGame\Resources\GameScene\StartSprite.png -> F:\myGame\proj.win32\Release.win32\Resources\GameScene\StartSprite.png
+  F:\myGame\Resources\GameScene\win.png -> F:\myGame\proj.win32\Release.win32\Resources\GameScene\win.png
+  F:\myGame\Resources\GameScene\Tower\AttackRange.PNG -> F:\myGame\proj.win32\Release.win32\Resources\GameScene\Tower\AttackRange.PNG
+  F:\myGame\Resources\GameScene\Tower\Btn_CantUpLevel.png -> F:\myGame\proj.win32\Release.win32\Resources\GameScene\Tower\Btn_CantUpLevel.png
+  F:\myGame\Resources\GameScene\Tower\Btn_CanUpLevel.png -> F:\myGame\proj.win32\Release.win32\Resources\GameScene\Tower\Btn_CanUpLevel.png
+  F:\myGame\Resources\GameScene\Tower\Btn_ReachHighestLevel.PNG -> F:\myGame\proj.win32\Release.win32\Resources\GameScene\Tower\Btn_ReachHighestLevel.PNG
+  F:\myGame\Resources\GameScene\Tower\Btn_SellTower.png -> F:\myGame\proj.win32\Release.win32\Resources\GameScene\Tower\Btn_SellTower.png
+  F:\myGame\Resources\GameScene\Tower\1\CanClick0.PNG -> F:\myGame\proj.win32\Release.win32\Resources\GameScene\Tower\1\CanClick0.PNG
+  F:\myGame\Resources\GameScene\Tower\1\CanClick1.PNG -> F:\myGame\proj.win32\Release.win32\Resources\GameScene\Tower\1\CanClick1.PNG
+  F:\myGame\Resources\GameScene\Tower\2\CanClick0.PNG -> F:\myGame\proj.win32\Release.win32\Resources\GameScene\Tower\2\CanClick0.PNG
+  F:\myGame\Resources\GameScene\Tower\2\CanClick1.PNG -> F:\myGame\proj.win32\Release.win32\Resources\GameScene\Tower\2\CanClick1.PNG
+  F:\myGame\Resources\HelperScene\help_1-hd-33_normal.PNG -> F:\myGame\proj.win32\Release.win32\Resources\HelperScene\help_1-hd-33_normal.PNG
+  F:\myGame\Resources\HelperScene\help_1-hd_0.PNG -> F:\myGame\proj.win32\Release.win32\Resources\HelperScene\help_1-hd_0.PNG
+  F:\myGame\Resources\HelperScene\help_1-hd_1.PNG -> F:\myGame\proj.win32\Release.win32\Resources\HelperScene\help_1-hd_1.PNG
+  F:\myGame\Resources\HelperScene\help_1-hd_14.PNG -> F:\myGame\proj.win32\Release.win32\Resources\HelperScene\help_1-hd_14.PNG
+  F:\myGame\Resources\HelperScene\help_1-hd_2.PNG -> F:\myGame\proj.win32\Release.win32\Resources\HelperScene\help_1-hd_2.PNG
+  F:\myGame\Resources\HelperScene\help_1-hd_29.PNG -> F:\myGame\proj.win32\Release.win32\Resources\HelperScene\help_1-hd_29.PNG
+  F:\myGame\Resources\HelperScene\help_1-hd_3.PNG -> F:\myGame\proj.win32\Release.win32\Resources\HelperScene\help_1-hd_3.PNG
+  F:\myGame\Resources\HelperScene\help_1-hd_33.PNG -> F:\myGame\proj.win32\Release.win32\Resources\HelperScene\help_1-hd_33.PNG
+  F:\myGame\Resources\HelperScene\help_1-hd_38.PNG -> F:\myGame\proj.win32\Release.win32\Resources\HelperScene\help_1-hd_38.PNG
+  F:\myGame\Resources\HelperScene\help_1-hd_39.PNG -> F:\myGame\proj.win32\Release.win32\Resources\HelperScene\help_1-hd_39.PNG
+  F:\myGame\Resources\HelperScene\help_1-hd_4.PNG -> F:\myGame\proj.win32\Release.win32\Resources\HelperScene\help_1-hd_4.PNG
+  F:\myGame\Resources\HelperScene\help_1-hd_50.PNG -> F:\myGame\proj.win32\Release.win32\Resources\HelperScene\help_1-hd_50.PNG
+  F:\myGame\Resources\HelperScene\help_1-hd_65.PNG -> F:\myGame\proj.win32\Release.win32\Resources\HelperScene\help_1-hd_65.PNG
+  F:\myGame\Resources\HelperScene\help_1-hd_66.PNG -> F:\myGame\proj.win32\Release.win32\Resources\HelperScene\help_1-hd_66.PNG
+  F:\myGame\Resources\HelperScene\help_1-hd_66_normal.PNG -> F:\myGame\proj.win32\Release.win32\Resources\HelperScene\help_1-hd_66_normal.PNG
+  F:\myGame\Resources\HelperScene\help_1-hd_67.PNG -> F:\myGame\proj.win32\Release.win32\Resources\HelperScene\help_1-hd_67.PNG
+  F:\myGame\Resources\HelperScene\help_1-hd_71.PNG -> F:\myGame\proj.win32\Release.win32\Resources\HelperScene\help_1-hd_71.PNG
+  F:\myGame\Resources\HelperScene\help_1-hd_71_normal.png -> F:\myGame\proj.win32\Release.win32\Resources\HelperScene\help_1-hd_71_normal.png
+  F:\myGame\Resources\HelperScene\help_1-hd_73.PNG -> F:\myGame\proj.win32\Release.win32\Resources\HelperScene\help_1-hd_73.PNG
+  F:\myGame\Resources\HelperScene\help_3-hd_1.png -> F:\myGame\proj.win32\Release.win32\Resources\HelperScene\help_3-hd_1.png
+  F:\myGame\Resources\HelperScene\help_3-hd_2.png -> F:\myGame\proj.win32\Release.win32\Resources\HelperScene\help_3-hd_2.png
+  F:\myGame\Resources\HelperScene\help_3-hd_3.png -> F:\myGame\proj.win32\Release.win32\Resources\HelperScene\help_3-hd_3.png
+  F:\myGame\Resources\HelperScene\help_3-hd_4.png -> F:\myGame\proj.win32\Release.win32\Resources\HelperScene\help_3-hd_4.png
+  F:\myGame\Resources\HelperScene\help_3-hd_bg.png -> F:\myGame\proj.win32\Release.win32\Resources\HelperScene\help_3-hd_bg.png
+  F:\myGame\Resources\HelperScene\help_3-hd_monster.png -> F:\myGame\proj.win32\Release.win32\Resources\HelperScene\help_3-hd_monster.png
+  F:\myGame\Resources\HelperScene\num_-1.png -> F:\myGame\proj.win32\Release.win32\Resources\HelperScene\num_-1.png
+  F:\myGame\Resources\HelperScene\num_0.png -> F:\myGame\proj.win32\Release.win32\Resources\HelperScene\num_0.png
+  F:\myGame\Resources\HelperScene\num_1.png -> F:\myGame\proj.win32\Release.win32\Resources\HelperScene\num_1.png
+  F:\myGame\Resources\HelperScene\num_10.png -> F:\myGame\proj.win32\Release.win32\Resources\HelperScene\num_10.png
+  F:\myGame\Resources\HelperScene\num_2.png -> F:\myGame\proj.win32\Release.win32\Resources\HelperScene\num_2.png
+  F:\myGame\Resources\HelperScene\num_3.png -> F:\myGame\proj.win32\Release.win32\Resources\HelperScene\num_3.png
+  F:\myGame\Resources\HelperScene\num_4.png -> F:\myGame\proj.win32\Release.win32\Resources\HelperScene\num_4.png
+  F:\myGame\Resources\HelperScene\num_5.png -> F:\myGame\proj.win32\Release.win32\Resources\HelperScene\num_5.png
+  F:\myGame\Resources\HelperScene\num_6.png -> F:\myGame\proj.win32\Release.win32\Resources\HelperScene\num_6.png
+  F:\myGame\Resources\HelperScene\num_7.png -> F:\myGame\proj.win32\Release.win32\Resources\HelperScene\num_7.png
+  F:\myGame\Resources\HelperScene\num_8.png -> F:\myGame\proj.win32\Release.win32\Resources\HelperScene\num_8.png
+  F:\myGame\Resources\HelperScene\num_9.png -> F:\myGame\proj.win32\Release.win32\Resources\HelperScene\num_9.png
+  F:\myGame\Resources\HelperScene\tower_1.png -> F:\myGame\proj.win32\Release.win32\Resources\HelperScene\tower_1.png
+  F:\myGame\Resources\HelperScene\tower_10.png -> F:\myGame\proj.win32\Release.win32\Resources\HelperScene\tower_10.png
+  F:\myGame\Resources\HelperScene\tower_2.png -> F:\myGame\proj.win32\Release.win32\Resources\HelperScene\tower_2.png
+  F:\myGame\Resources\HelperScene\tower_3.png -> F:\myGame\proj.win32\Release.win32\Resources\HelperScene\tower_3.png
+  F:\myGame\Resources\HelperScene\tower_4.png -> F:\myGame\proj.win32\Release.win32\Resources\HelperScene\tower_4.png
+  F:\myGame\Resources\HelperScene\tower_5.png -> F:\myGame\proj.win32\Release.win32\Resources\HelperScene\tower_5.png
+  F:\myGame\Resources\HelperScene\tower_6.png -> F:\myGame\proj.win32\Release.win32\Resources\HelperScene\tower_6.png
+  F:\myGame\Resources\HelperScene\tower_7.png -> F:\myGame\proj.win32\Release.win32\Resources\HelperScene\tower_7.png
+  F:\myGame\Resources\HelperScene\tower_8.png -> F:\myGame\proj.win32\Release.win32\Resources\HelperScene\tower_8.png
+  F:\myGame\Resources\HelperScene\tower_9.png -> F:\myGame\proj.win32\Release.win32\Resources\HelperScene\tower_9.png
+  F:\myGame\Resources\Level\Level1_bg.png -> F:\myGame\proj.win32\Release.win32\Resources\Level\Level1_bg.png
+  F:\myGame\Resources\Level\Level2_bg.png -> F:\myGame\proj.win32\Release.win32\Resources\Level\Level2_bg.png
+  F:\myGame\Resources\Level\startPoint.PNG -> F:\myGame\proj.win32\Release.win32\Resources\Level\startPoint.PNG
+  F:\myGame\Resources\Monster\appear.PNG -> F:\myGame\proj.win32\Release.win32\Resources\Monster\appear.PNG
+  F:\myGame\Resources\Monster\explosion.PNG -> F:\myGame\proj.win32\Release.win32\Resources\Monster\explosion.PNG
+  F:\myGame\Resources\Monster\monster1.png -> F:\myGame\proj.win32\Release.win32\Resources\Monster\monster1.png
+  F:\myGame\Resources\Monster\monster2.png -> F:\myGame\proj.win32\Release.win32\Resources\Monster\monster2.png
+  F:\myGame\Resources\Monster\monster3.png -> F:\myGame\proj.win32\Release.win32\Resources\Monster\monster3.png
+  F:\myGame\Resources\Monster\monster4.png -> F:\myGame\proj.win32\Release.win32\Resources\Monster\monster4.png
+  F:\myGame\Resources\myCarrot\bloodBackground.png -> F:\myGame\proj.win32\Release.win32\Resources\myCarrot\bloodBackground.png
+  F:\myGame\Resources\myCarrot\Hp.png -> F:\myGame\proj.win32\Release.win32\Resources\myCarrot\Hp.png
+  F:\myGame\Resources\myCarrot\HP_1.PNG -> F:\myGame\proj.win32\Release.win32\Resources\myCarrot\HP_1.PNG
+  F:\myGame\Resources\myCarrot\HP_2.PNG -> F:\myGame\proj.win32\Release.win32\Resources\myCarrot\HP_2.PNG
+  F:\myGame\Resources\myCarrot\HP_3.PNG -> F:\myGame\proj.win32\Release.win32\Resources\myCarrot\HP_3.PNG
+  F:\myGame\Resources\myCarrot\HP_4.PNG -> F:\myGame\proj.win32\Release.win32\Resources\myCarrot\HP_4.PNG
+  F:\myGame\Resources\myCarrot\HP_5-6.PNG -> F:\myGame\proj.win32\Release.win32\Resources\myCarrot\HP_5-6.PNG
+  F:\myGame\Resources\myCarrot\HP_7-8.PNG -> F:\myGame\proj.win32\Release.win32\Resources\myCarrot\HP_7-8.PNG
+  F:\myGame\Resources\myCarrot\HP_9.PNG -> F:\myGame\proj.win32\Release.win32\Resources\myCarrot\HP_9.PNG
+  F:\myGame\Resources\myCarrot\HP_MAX.PNG -> F:\myGame\proj.win32\Release.win32\Resources\myCarrot\HP_MAX.PNG
+  F:\myGame\Resources\myCarrot\lovelyCarrot.png -> F:\myGame\proj.win32\Release.win32\Resources\myCarrot\lovelyCarrot.png
+  F:\myGame\Resources\SelectScene\BG_Left.PNG -> F:\myGame\proj.win32\Release.win32\Resources\SelectScene\BG_Left.PNG
+  F:\myGame\Resources\SelectScene\BG_Right.PNG -> F:\myGame\proj.win32\Release.win32\Resources\SelectScene\BG_Right.PNG
+  F:\myGame\Resources\SelectScene\finish.png -> F:\myGame\proj.win32\Release.win32\Resources\SelectScene\finish.png
+  F:\myGame\Resources\SelectScene\Level_1.PNG -> F:\myGame\proj.win32\Release.win32\Resources\SelectScene\Level_1.PNG
+  F:\myGame\Resources\SelectScene\Level_2.PNG -> F:\myGame\proj.win32\Release.win32\Resources\SelectScene\Level_2.PNG
+  F:\myGame\Resources\SelectScene\Level_3.PNG -> F:\myGame\proj.win32\Release.win32\Resources\SelectScene\Level_3.PNG
+  F:\myGame\Resources\SelectScene\Level_4.PNG -> F:\myGame\proj.win32\Release.win32\Resources\SelectScene\Level_4.PNG
+  F:\myGame\Resources\SelectScene\Level_5.PNG -> F:\myGame\proj.win32\Release.win32\Resources\SelectScene\Level_5.PNG
+  F:\myGame\Resources\SelectScene\lock_btn_normal.png -> F:\myGame\proj.win32\Release.win32\Resources\SelectScene\lock_btn_normal.png
+  F:\myGame\Resources\SelectScene\lock_btn_selected.png -> F:\myGame\proj.win32\Release.win32\Resources\SelectScene\lock_btn_selected.png
+  F:\myGame\Resources\SelectScene\stages_bg-hd_0.PNG -> F:\myGame\proj.win32\Release.win32\Resources\SelectScene\stages_bg-hd_0.PNG
+  F:\myGame\Resources\SelectScene\stages_bg-hd_28.PNG -> F:\myGame\proj.win32\Release.win32\Resources\SelectScene\stages_bg-hd_28.PNG
+  F:\myGame\Resources\SelectScene\stages_bg-hd_30.PNG -> F:\myGame\proj.win32\Release.win32\Resources\SelectScene\stages_bg-hd_30.PNG
+  F:\myGame\Resources\SelectScene\stages_bg-hd_31.PNG -> F:\myGame\proj.win32\Release.win32\Resources\SelectScene\stages_bg-hd_31.PNG
+  F:\myGame\Resources\SelectScene\stages_bg-hd_33.PNG -> F:\myGame\proj.win32\Release.win32\Resources\SelectScene\stages_bg-hd_33.PNG
+  F:\myGame\Resources\SelectScene\stages_bg-hd_39.PNG -> F:\myGame\proj.win32\Release.win32\Resources\SelectScene\stages_bg-hd_39.PNG
+  F:\myGame\Resources\SelectScene\stages_bg-hd_40.PNG -> F:\myGame\proj.win32\Release.win32\Resources\SelectScene\stages_bg-hd_40.PNG
+  F:\myGame\Resources\SelectScene\stages_bg-hd_41.PNG -> F:\myGame\proj.win32\Release.win32\Resources\SelectScene\stages_bg-hd_41.PNG
+  F:\myGame\Resources\SelectScene\stages_bg-hd_42.PNG -> F:\myGame\proj.win32\Release.win32\Resources\SelectScene\stages_bg-hd_42.PNG
+  F:\myGame\Resources\SelectScene\themescene1-hd_17.PNG -> F:\myGame\proj.win32\Release.win32\Resources\SelectScene\themescene1-hd_17.PNG
+  F:\myGame\Resources\SelectScene\themescene1-hd_8.PNG -> F:\myGame\proj.win32\Release.win32\Resources\SelectScene\themescene1-hd_8.PNG
+  F:\myGame\Resources\SelectScene\Tower_1.PNG -> F:\myGame\proj.win32\Release.win32\Resources\SelectScene\Tower_1.PNG
+  F:\myGame\Resources\SelectScene\Tower_2.PNG -> F:\myGame\proj.win32\Release.win32\Resources\SelectScene\Tower_2.PNG
+  F:\myGame\Resources\SelectScene\Tower_3.PNG -> F:\myGame\proj.win32\Release.win32\Resources\SelectScene\Tower_3.PNG
+  F:\myGame\Resources\SelectScene\Tower_4.PNG -> F:\myGame\proj.win32\Release.win32\Resources\SelectScene\Tower_4.PNG
+  F:\myGame\Resources\SelectScene\Tower_5.PNG -> F:\myGame\proj.win32\Release.win32\Resources\SelectScene\Tower_5.PNG
+  F:\myGame\Resources\SettingScene\Btn_Return.PNG -> F:\myGame\proj.win32\Release.win32\Resources\SettingScene\Btn_Return.PNG
+  F:\myGame\Resources\SettingScene\Btn_ReturnLight.PNG -> F:\myGame\proj.win32\Release.win32\Resources\SettingScene\Btn_ReturnLight.PNG
+  F:\myGame\Resources\SettingScene\reset_image.png -> F:\myGame\proj.win32\Release.win32\Resources\SettingScene\reset_image.png
+  F:\myGame\Resources\SettingScene\reset_no_normal.png -> F:\myGame\proj.win32\Release.win32\Resources\SettingScene\reset_no_normal.png
+  F:\myGame\Resources\SettingScene\reset_no_selected.png -> F:\myGame\proj.win32\Release.win32\Resources\SettingScene\reset_no_selected.png
+  F:\myGame\Resources\SettingScene\reset_yes_normal.png -> F:\myGame\proj.win32\Release.win32\Resources\SettingScene\reset_yes_normal.png
+  F:\myGame\Resources\SettingScene\reset_yes_selected.png -> F:\myGame\proj.win32\Release.win32\Resources\SettingScene\reset_yes_selected.png
+  F:\myGame\Resources\SettingScene\setting02-hd_0.PNG -> F:\myGame\proj.win32\Release.win32\Resources\SettingScene\setting02-hd_0.PNG
+  F:\myGame\Resources\SettingScene\setting02-hd_11.PNG -> F:\myGame\proj.win32\Release.win32\Resources\SettingScene\setting02-hd_11.PNG
+  F:\myGame\Resources\SettingScene\setting02-hd_12.PNG -> F:\myGame\proj.win32\Release.win32\Resources\SettingScene\setting02-hd_12.PNG
+  F:\myGame\Resources\SettingScene\setting02-hd_15.PNG -> F:\myGame\proj.win32\Release.win32\Resources\SettingScene\setting02-hd_15.PNG
+  F:\myGame\Resources\SettingScene\setting02-hd_16.PNG -> F:\myGame\proj.win32\Release.win32\Resources\SettingScene\setting02-hd_16.PNG
+  F:\myGame\Resources\SettingScene\setting02-hd_2.PNG -> F:\myGame\proj.win32\Release.win32\Resources\SettingScene\setting02-hd_2.PNG
+  F:\myGame\Resources\SettingScene\setting02-hd_21.PNG -> F:\myGame\proj.win32\Release.win32\Resources\SettingScene\setting02-hd_21.PNG
+  F:\myGame\Resources\SettingScene\setting02-hd_22.PNG -> F:\myGame\proj.win32\Release.win32\Resources\SettingScene\setting02-hd_22.PNG
+  F:\myGame\Resources\SettingScene\setting02-hd_23.PNG -> F:\myGame\proj.win32\Release.win32\Resources\SettingScene\setting02-hd_23.PNG
+  F:\myGame\Resources\SettingScene\setting02-hd_27.PNG -> F:\myGame\proj.win32\Release.win32\Resources\SettingScene\setting02-hd_27.PNG
+  F:\myGame\Resources\SettingScene\setting02-hd_31.PNG -> F:\myGame\proj.win32\Release.win32\Resources\SettingScene\setting02-hd_31.PNG
+  F:\myGame\Resources\SettingScene\setting02-hd_35.PNG -> F:\myGame\proj.win32\Release.win32\Resources\SettingScene\setting02-hd_35.PNG
+  F:\myGame\Resources\SettingScene\setting02-hd_38.PNG -> F:\myGame\proj.win32\Release.win32\Resources\SettingScene\setting02-hd_38.PNG
+  F:\myGame\Resources\SettingScene\setting02-hd_42.PNG -> F:\myGame\proj.win32\Release.win32\Resources\SettingScene\setting02-hd_42.PNG
+  F:\myGame\Resources\SettingScene\setting02-hd_43.PNG -> F:\myGame\proj.win32\Release.win32\Resources\SettingScene\setting02-hd_43.PNG
+  F:\myGame\Resources\SettingScene\setting02-hd_43_normal.PNG -> F:\myGame\proj.win32\Release.win32\Resources\SettingScene\setting02-hd_43_normal.PNG
+  F:\myGame\Resources\SettingScene\setting02-hd_44.PNG -> F:\myGame\proj.win32\Release.win32\Resources\SettingScene\setting02-hd_44.PNG
+  F:\myGame\Resources\SettingScene\setting02-hd_45.PNG -> F:\myGame\proj.win32\Release.win32\Resources\SettingScene\setting02-hd_45.PNG
+  F:\myGame\Resources\SettingScene\setting02-hd_45_normal.PNG -> F:\myGame\proj.win32\Release.win32\Resources\SettingScene\setting02-hd_45_normal.PNG
+  F:\myGame\Resources\SettingScene\setting02-hd_48.PNG -> F:\myGame\proj.win32\Release.win32\Resources\SettingScene\setting02-hd_48.PNG
+  F:\myGame\Resources\SettingScene\setting02-hd_48_normal.png -> F:\myGame\proj.win32\Release.win32\Resources\SettingScene\setting02-hd_48_normal.png
+  F:\myGame\Resources\SettingScene\setting02-hd_54.PNG -> F:\myGame\proj.win32\Release.win32\Resources\SettingScene\setting02-hd_54.PNG
+  F:\myGame\Resources\SettingScene\setting02-hd_55.PNG -> F:\myGame\proj.win32\Release.win32\Resources\SettingScene\setting02-hd_55.PNG
+  F:\myGame\Resources\SettingScene\setting02-hd_6.PNG -> F:\myGame\proj.win32\Release.win32\Resources\SettingScene\setting02-hd_6.PNG
+  F:\myGame\Resources\SettingScene\setting02-hd_7.PNG -> F:\myGame\proj.win32\Release.win32\Resources\SettingScene\setting02-hd_7.PNG
+  F:\myGame\Resources\SettingScene\SettingBG1.png -> F:\myGame\proj.win32\Release.win32\Resources\SettingScene\SettingBG1.png
+  F:\myGame\Resources\SettingScene\SettingBG2.png -> F:\myGame\proj.win32\Release.win32\Resources\SettingScene\SettingBG2.png
+  F:\myGame\Resources\SettingScene\SettingBG3.png -> F:\myGame\proj.win32\Release.win32\Resources\SettingScene\SettingBG3.png
+  F:\myGame\Resources\sound\backGround.ogg -> F:\myGame\proj.win32\Release.win32\Resources\sound\backGround.ogg
+  F:\myGame\Resources\sound\button.mp3 -> F:\myGame\proj.win32\Release.win32\Resources\sound\button.mp3
+  F:\myGame\Resources\sound\CarrotFantasy.mp3 -> F:\myGame\proj.win32\Release.win32\Resources\sound\CarrotFantasy.mp3
+  F:\myGame\Resources\sound\page.mp3 -> F:\myGame\proj.win32\Release.win32\Resources\sound\page.mp3
+  F:\myGame\Resources\Tower\Tower_Delete.PNG -> F:\myGame\proj.win32\Release.win32\Resources\Tower\Tower_Delete.PNG
+  F:\myGame\Resources\Tower\Bottle\CanClick0.PNG -> F:\myGame\proj.win32\Release.win32\Resources\Tower\Bottle\CanClick0.PNG
+  F:\myGame\Resources\Tower\Bottle\CanClick1.PNG -> F:\myGame\proj.win32\Release.win32\Resources\Tower\Bottle\CanClick1.PNG
+  F:\myGame\Resources\Tower\Bottle\ID1_0.PNG -> F:\myGame\proj.win32\Release.win32\Resources\Tower\Bottle\ID1_0.PNG
+  F:\myGame\Resources\Tower\Bottle\ID1_10.PNG -> F:\myGame\proj.win32\Release.win32\Resources\Tower\Bottle\ID1_10.PNG
+  F:\myGame\Resources\Tower\Bottle\ID1_11.PNG -> F:\myGame\proj.win32\Release.win32\Resources\Tower\Bottle\ID1_11.PNG
+  F:\myGame\Resources\Tower\Bottle\ID1_12.PNG -> F:\myGame\proj.win32\Release.win32\Resources\Tower\Bottle\ID1_12.PNG
+  F:\myGame\Resources\Tower\Bottle\ID1_13.PNG -> F:\myGame\proj.win32\Release.win32\Resources\Tower\Bottle\ID1_13.PNG
+  F:\myGame\Resources\Tower\Bottle\ID1_14.PNG -> F:\myGame\proj.win32\Release.win32\Resources\Tower\Bottle\ID1_14.PNG
+  F:\myGame\Resources\Tower\Bottle\ID1_16.PNG -> F:\myGame\proj.win32\Release.win32\Resources\Tower\Bottle\ID1_16.PNG
+  F:\myGame\Resources\Tower\Bottle\ID1_17.PNG -> F:\myGame\proj.win32\Release.win32\Resources\Tower\Bottle\ID1_17.PNG
+  F:\myGame\Resources\Tower\Bottle\ID1_18.PNG -> F:\myGame\proj.win32\Release.win32\Resources\Tower\Bottle\ID1_18.PNG
+  F:\myGame\Resources\Tower\Bottle\ID1_19.PNG -> F:\myGame\proj.win32\Release.win32\Resources\Tower\Bottle\ID1_19.PNG
+  F:\myGame\Resources\Tower\Bottle\ID1_2.PNG -> F:\myGame\proj.win32\Release.win32\Resources\Tower\Bottle\ID1_2.PNG
+  F:\myGame\Resources\Tower\Bottle\ID1_20.PNG -> F:\myGame\proj.win32\Release.win32\Resources\Tower\Bottle\ID1_20.PNG
+  F:\myGame\Resources\Tower\Bottle\ID1_21.PNG -> F:\myGame\proj.win32\Release.win32\Resources\Tower\Bottle\ID1_21.PNG
+  F:\myGame\Resources\Tower\Bottle\ID1_22.PNG -> F:\myGame\proj.win32\Release.win32\Resources\Tower\Bottle\ID1_22.PNG
+  F:\myGame\Resources\Tower\Bottle\ID1_3.PNG -> F:\myGame\proj.win32\Release.win32\Resources\Tower\Bottle\ID1_3.PNG
+  F:\myGame\Resources\Tower\Bottle\ID1_6.PNG -> F:\myGame\proj.win32\Release.win32\Resources\Tower\Bottle\ID1_6.PNG
+  F:\myGame\Resources\Tower\Bottle\ID1_7.PNG -> F:\myGame\proj.win32\Release.win32\Resources\Tower\Bottle\ID1_7.PNG
+  F:\myGame\Resources\Tower\Bottle\ID1_8.PNG -> F:\myGame\proj.win32\Release.win32\Resources\Tower\Bottle\ID1_8.PNG
+  F:\myGame\Resources\Tower\Bottle\ID1_9.PNG -> F:\myGame\proj.win32\Release.win32\Resources\Tower\Bottle\ID1_9.PNG
+  F:\myGame\Resources\Tower\Bottle\Level2.PNG -> F:\myGame\proj.win32\Release.win32\Resources\Tower\Bottle\Level2.PNG
+  F:\myGame\Resources\Tower\Bottle\Level3.PNG -> F:\myGame\proj.win32\Release.win32\Resources\Tower\Bottle\Level3.PNG
+  F:\myGame\Resources\Tower\Fan\CanClick0.PNG -> F:\myGame\proj.win32\Release.win32\Resources\Tower\Fan\CanClick0.PNG
+  F:\myGame\Resources\Tower\Fan\CanClick1.PNG -> F:\myGame\proj.win32\Release.win32\Resources\Tower\Fan\CanClick1.PNG
+  F:\myGame\Resources\Tower\Fan\ID4_0.PNG -> F:\myGame\proj.win32\Release.win32\Resources\Tower\Fan\ID4_0.PNG
+  F:\myGame\Resources\Tower\Fan\ID4_1.PNG -> F:\myGame\proj.win32\Release.win32\Resources\Tower\Fan\ID4_1.PNG
+  F:\myGame\Resources\Tower\Fan\ID4_10.PNG -> F:\myGame\proj.win32\Release.win32\Resources\Tower\Fan\ID4_10.PNG
+  F:\myGame\Resources\Tower\Fan\ID4_11.PNG -> F:\myGame\proj.win32\Release.win32\Resources\Tower\Fan\ID4_11.PNG
+  F:\myGame\Resources\Tower\Fan\ID4_12.PNG -> F:\myGame\proj.win32\Release.win32\Resources\Tower\Fan\ID4_12.PNG
+  F:\myGame\Resources\Tower\Fan\ID4_13.PNG -> F:\myGame\proj.win32\Release.win32\Resources\Tower\Fan\ID4_13.PNG
+  F:\myGame\Resources\Tower\Fan\ID4_14.PNG -> F:\myGame\proj.win32\Release.win32\Resources\Tower\Fan\ID4_14.PNG
+  F:\myGame\Resources\Tower\Fan\ID4_15.PNG -> F:\myGame\proj.win32\Release.win32\Resources\Tower\Fan\ID4_15.PNG
+  F:\myGame\Resources\Tower\Fan\ID4_2.PNG -> F:\myGame\proj.win32\Release.win32\Resources\Tower\Fan\ID4_2.PNG
+  F:\myGame\Resources\Tower\Fan\ID4_5.PNG -> F:\myGame\proj.win32\Release.win32\Resources\Tower\Fan\ID4_5.PNG
+  F:\myGame\Resources\Tower\Fan\ID4_6.PNG -> F:\myGame\proj.win32\Release.win32\Resources\Tower\Fan\ID4_6.PNG
+  F:\myGame\Resources\Tower\Fan\ID4_7.PNG -> F:\myGame\proj.win32\Release.win32\Resources\Tower\Fan\ID4_7.PNG
+  F:\myGame\Resources\Tower\Fan\ID4_8.PNG -> F:\myGame\proj.win32\Release.win32\Resources\Tower\Fan\ID4_8.PNG
+  F:\myGame\Resources\Tower\Fan\ID4_9.PNG -> F:\myGame\proj.win32\Release.win32\Resources\Tower\Fan\ID4_9.PNG
+  F:\myGame\Resources\Tower\Fan\Level1.PNG -> F:\myGame\proj.win32\Release.win32\Resources\Tower\Fan\Level1.PNG
+  F:\myGame\Resources\Tower\Fan\Level2.PNG -> F:\myGame\proj.win32\Release.win32\Resources\Tower\Fan\Level2.PNG
+  F:\myGame\Resources\Tower\Fan\Level3.PNG -> F:\myGame\proj.win32\Release.win32\Resources\Tower\Fan\Level3.PNG
+  F:\myGame\Resources\Tower\Shit\CanClick0.PNG -> F:\myGame\proj.win32\Release.win32\Resources\Tower\Shit\CanClick0.PNG
+  F:\myGame\Resources\Tower\Shit\CanClick1.PNG -> F:\myGame\proj.win32\Release.win32\Resources\Tower\Shit\CanClick1.PNG
+  F:\myGame\Resources\Tower\Shit\ID2_1.PNG -> F:\myGame\proj.win32\Release.win32\Resources\Tower\Shit\ID2_1.PNG
+  F:\myGame\Resources\Tower\Shit\ID2_10.PNG -> F:\myGame\proj.win32\Release.win32\Resources\Tower\Shit\ID2_10.PNG
+  F:\myGame\Resources\Tower\Shit\ID2_13.PNG -> F:\myGame\proj.win32\Release.win32\Resources\Tower\Shit\ID2_13.PNG
+  F:\myGame\Resources\Tower\Shit\ID2_14.PNG -> F:\myGame\proj.win32\Release.win32\Resources\Tower\Shit\ID2_14.PNG
+  F:\myGame\Resources\Tower\Shit\ID2_19.PNG -> F:\myGame\proj.win32\Release.win32\Resources\Tower\Shit\ID2_19.PNG
+  F:\myGame\Resources\Tower\Shit\ID2_23.PNG -> F:\myGame\proj.win32\Release.win32\Resources\Tower\Shit\ID2_23.PNG
+  F:\myGame\Resources\Tower\Shit\ID2_27.PNG -> F:\myGame\proj.win32\Release.win32\Resources\Tower\Shit\ID2_27.PNG
+  F:\myGame\Resources\Tower\Shit\ID2_28.PNG -> F:\myGame\proj.win32\Release.win32\Resources\Tower\Shit\ID2_28.PNG
+  F:\myGame\Resources\Tower\Shit\ID2_29.PNG -> F:\myGame\proj.win32\Release.win32\Resources\Tower\Shit\ID2_29.PNG
+  F:\myGame\Resources\Tower\Shit\ID2_33.PNG -> F:\myGame\proj.win32\Release.win32\Resources\Tower\Shit\ID2_33.PNG
+  F:\myGame\Resources\Tower\Shit\ID2_35.PNG -> F:\myGame\proj.win32\Release.win32\Resources\Tower\Shit\ID2_35.PNG
+  F:\myGame\Resources\Tower\Shit\ID2_37.PNG -> F:\myGame\proj.win32\Release.win32\Resources\Tower\Shit\ID2_37.PNG
+  F:\myGame\Resources\Tower\Shit\ID2_39.PNG -> F:\myGame\proj.win32\Release.win32\Resources\Tower\Shit\ID2_39.PNG
+  F:\myGame\Resources\Tower\Shit\ID2_4.PNG -> F:\myGame\proj.win32\Release.win32\Resources\Tower\Shit\ID2_4.PNG
+  F:\myGame\Resources\Tower\Shit\ID2_41.PNG -> F:\myGame\proj.win32\Release.win32\Resources\Tower\Shit\ID2_41.PNG
+  F:\myGame\Resources\Tower\Shit\ID2_42.PNG -> F:\myGame\proj.win32\Release.win32\Resources\Tower\Shit\ID2_42.PNG
+  F:\myGame\Resources\Tower\Shit\ID2_43.PNG -> F:\myGame\proj.win32\Release.win32\Resources\Tower\Shit\ID2_43.PNG
+  F:\myGame\Resources\Tower\Shit\ID2_7.PNG -> F:\myGame\proj.win32\Release.win32\Resources\Tower\Shit\ID2_7.PNG
+  F:\myGame\Resources\Tower\Shit\ID2_9.PNG -> F:\myGame\proj.win32\Release.win32\Resources\Tower\Shit\ID2_9.PNG
+  F:\myGame\Resources\Tower\Shit\Level1.PNG -> F:\myGame\proj.win32\Release.win32\Resources\Tower\Shit\Level1.PNG
+  F:\myGame\Resources\Tower\Shit\Level2.PNG -> F:\myGame\proj.win32\Release.win32\Resources\Tower\Shit\Level2.PNG
+  F:\myGame\Resources\Tower\Shit\Level3.PNG -> F:\myGame\proj.win32\Release.win32\Resources\Tower\Shit\Level3.PNG
+  F:\myGame\Resources\WelcomeScene\boss_lock_image.png -> F:\myGame\proj.win32\Release.win32\Resources\WelcomeScene\boss_lock_image.png
+  F:\myGame\Resources\WelcomeScene\Btn_Boss.PNG -> F:\myGame\proj.win32\Release.win32\Resources\WelcomeScene\Btn_Boss.PNG
+  F:\myGame\Resources\WelcomeScene\Btn_BossLight.PNG -> F:\myGame\proj.win32\Release.win32\Resources\WelcomeScene\Btn_BossLight.PNG
+  F:\myGame\Resources\WelcomeScene\Btn_Help.PNG -> F:\myGame\proj.win32\Release.win32\Resources\WelcomeScene\Btn_Help.PNG
+  F:\myGame\Resources\WelcomeScene\Btn_HelpLight.PNG -> F:\myGame\proj.win32\Release.win32\Resources\WelcomeScene\Btn_HelpLight.PNG
+  F:\myGame\Resources\WelcomeScene\Btn_MonsterNest.PNG -> F:\myGame\proj.win32\Release.win32\Resources\WelcomeScene\Btn_MonsterNest.PNG
+  F:\myGame\Resources\WelcomeScene\Btn_MonsterNestLight.PNG -> F:\myGame\proj.win32\Release.win32\Resources\WelcomeScene\Btn_MonsterNestLight.PNG
+  F:\myGame\Resources\WelcomeScene\Btn_NormalModle.PNG -> F:\myGame\proj.win32\Release.win32\Resources\WelcomeScene\Btn_NormalModle.PNG
+  F:\myGame\Resources\WelcomeScene\Btn_NormalModleLight.PNG -> F:\myGame\proj.win32\Release.win32\Resources\WelcomeScene\Btn_NormalModleLight.PNG
+  F:\myGame\Resources\WelcomeScene\Btn_Set.PNG -> F:\myGame\proj.win32\Release.win32\Resources\WelcomeScene\Btn_Set.PNG
+  F:\myGame\Resources\WelcomeScene\Btn_SetLight.PNG -> F:\myGame\proj.win32\Release.win32\Resources\WelcomeScene\Btn_SetLight.PNG
+  F:\myGame\Resources\WelcomeScene\CarrotBody.PNG -> F:\myGame\proj.win32\Release.win32\Resources\WelcomeScene\CarrotBody.PNG
+  F:\myGame\Resources\WelcomeScene\Cloud.PNG -> F:\myGame\proj.win32\Release.win32\Resources\WelcomeScene\Cloud.PNG
+  F:\myGame\Resources\WelcomeScene\Cloud2.PNG -> F:\myGame\proj.win32\Release.win32\Resources\WelcomeScene\Cloud2.PNG
+  F:\myGame\Resources\WelcomeScene\FlyMonster.PNG -> F:\myGame\proj.win32\Release.win32\Resources\WelcomeScene\FlyMonster.PNG
+  F:\myGame\Resources\WelcomeScene\Leaf1.PNG -> F:\myGame\proj.win32\Release.win32\Resources\WelcomeScene\Leaf1.PNG
+  F:\myGame\Resources\WelcomeScene\leaf2.PNG -> F:\myGame\proj.win32\Release.win32\Resources\WelcomeScene\leaf2.PNG
+  F:\myGame\Resources\WelcomeScene\Leaf3.PNG -> F:\myGame\proj.win32\Release.win32\Resources\WelcomeScene\Leaf3.PNG
+  F:\myGame\Resources\WelcomeScene\lock.png -> F:\myGame\proj.win32\Release.win32\Resources\WelcomeScene\lock.png
+  F:\myGame\Resources\WelcomeScene\lock_btn_normal.png -> F:\myGame\proj.win32\Release.win32\Resources\WelcomeScene\lock_btn_normal.png
+  F:\myGame\Resources\WelcomeScene\lock_btn_selected.png -> F:\myGame\proj.win32\Release.win32\Resources\WelcomeScene\lock_btn_selected.png
+  F:\myGame\Resources\WelcomeScene\MainBG.PNG -> F:\myGame\proj.win32\Release.win32\Resources\WelcomeScene\MainBG.PNG
+  F:\myGame\Resources\WelcomeScene\MainTitle.PNG -> F:\myGame\proj.win32\Release.win32\Resources\WelcomeScene\MainTitle.PNG
+  F:\myGame\Resources\WelcomeScene\nest_lock_image.png -> F:\myGame\proj.win32\Release.win32\Resources\WelcomeScene\nest_lock_image.png
+  复制了 265 个文件
