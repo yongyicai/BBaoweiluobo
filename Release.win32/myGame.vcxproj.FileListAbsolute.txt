@@ -1,1 +1,0 @@
-F:\myGame\proj.win32\Release.win32\myGame.exe

@@ -22,6 +22,7 @@ public:
 
 private:
     Bullet* bullet;
+    Sprite* base;
 };
 
 #endif

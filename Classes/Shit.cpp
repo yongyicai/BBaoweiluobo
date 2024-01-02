@@ -26,7 +26,7 @@ Shit* Shit::create(const Vec2& position) {
 
 void Shit::upgrade()
 {
-    if (level < 3 || goldCoin->m_value > 120) {
+    if (level < 3 && goldCoin->m_value > 120) {
         level++;
 
         // 更新外观
@@ -62,7 +62,18 @@ void Shit::remove()
     auto removeExplosion = cocos2d::RemoveSelf::create();
     auto sequence = cocos2d::Sequence::create(fadeOut, removeExplosion, nullptr);
     Delete->runAction(sequence);
-
+    /****1/2更新 指针向量置零*****************************/
+    for (auto iter = shits.begin(); iter != shits.end();)
+    {
+        if (this == *iter)
+        {
+            iter = shits.erase(iter);
+        }
+        else
+        {
+            iter++;
+        }
+    }
     this->hideAttackRangeAndButtons();
     this->removeAllChildren();
     this->removeFromParentAndCleanup(true);

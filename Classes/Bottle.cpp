@@ -12,9 +12,11 @@ USING_NS_CC;
 Bottle* Bottle::create(const Vec2& position) {
     Bottle* bottle = new (std::nothrow) Bottle();
     if (bottle && bottle->init()) {
-        auto base = Sprite::create("Tower/Bottle/ID1_11.PNG");
-        base->setPosition(bottle->getPosition().x + 15, bottle->getPosition().y + 25);
-        bottle->addChild(base, -1);
+        //1/2 尝试将base制成成员变量，希望达到在upgrade时不会重复出现
+        bottle->base = Sprite::create("Tower/Bottle/ID1_11.PNG");
+        bottle->base->setPosition(bottle->getPosition().x + 15, bottle->getPosition().y + 25);
+        
+        bottle->addChild(bottle->base, -1);
 
         bottle->setTexture("Tower/Bottle/ID1_22.PNG"); // 初始外观
         bottle->autorelease();
@@ -33,13 +35,13 @@ Bottle* Bottle::create(const Vec2& position) {
 
 void Bottle::upgrade()
 {
-    if (level < 3 || goldCoin->m_value > 70) {
+    if (level < 3 && goldCoin->m_value > 70) {
         level++;
 
         // 更新外观
         std::string textureName = "Tower/Bottle/Level" + std::to_string(level) + ".PNG";
         setTexture(textureName);
-        
+       // this->base->setPosition(this->getPosition().x + 15, this->getPosition().y + 25);
         // 战力提升
         attackSpeed += 400;
         attackDamage += 50;
@@ -69,7 +71,19 @@ void Bottle::remove()
     auto removeExplosion = cocos2d::RemoveSelf::create();
     auto sequence = cocos2d::Sequence::create(fadeOut, removeExplosion, nullptr);
     Delete->runAction(sequence);
-
+    /****1/2更新 指针向量置零*****************************/
+    for (auto iter = bottles.begin(); iter != bottles.end();)
+    {
+        if (this == *iter)
+        {
+            iter = bottles.erase(iter);
+        }
+        else
+        {
+            iter++;
+        }
+    }
+    /****************************************/
     this->hideAttackRangeAndButtons();
     this->removeAllChildren();
     this->removeFromParentAndCleanup(true);

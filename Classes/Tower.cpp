@@ -14,10 +14,6 @@ Tower::Tower() : level(1), attackSpeed(1.0f), towerType(0)
     // 初始化代码
 }
 
-//Tower::~Tower()
-//{
-//    // 清理代码
-//}
 Tower* Tower::create(Vec2 position,int towerType)
 {
     Tower* tower = new (std::nothrow) Tower();

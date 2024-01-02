@@ -190,7 +190,11 @@ void Level1Scene::spawnMonsters(int waveIndex) {
 
 void Level1Scene::endGame() {
     // 处理游戏结束逻辑
-
+    /********1/2 更新 置零*/
+    monsters.clear();
+    bottles.clear();
+    fans.clear();
+    shits.clear();
     /* 出现获胜提示框 */
     // 蒙版层
     auto visibleSize = Director::getInstance()->getVisibleSize();
