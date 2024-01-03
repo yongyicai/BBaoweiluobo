@@ -79,7 +79,7 @@ bool WelcomeScene::init()
     flymonster->runAction(floatAction);
 
     /* 设置按钮 */
-    auto settingsButton = ui::Button::create("Btn_Set.PNG", "Btn_SetLight.PNG");
+    auto settingsButton = ui::Button::create("WelcomeScene/Btn_Set.PNG", "WelcomeScene/Btn_SetLight.PNG");
     settingsButton->setPosition(Vec2(210, 230)); // 设置按钮的初始位置
     // 按钮点击事件处理逻辑
     settingsButton->addClickEventListener([=](Ref*) {
@@ -100,7 +100,7 @@ bool WelcomeScene::init()
     this->addChild(settingsButton, 0);
 
     /* 帮助按钮 */
-    auto helpButton = ui::Button::create("Btn_Help.PNG", "Btn_HelpLight.PNG");
+    auto helpButton = ui::Button::create("WelcomeScene/Btn_Help.PNG", "WelcomeScene/Btn_HelpLight.PNG");
     helpButton->setPosition(Vec2(770, 230)); // 设置按钮的初始位置
     // 按钮点击事件处理逻辑
     helpButton->addClickEventListener([=](Ref*) {
